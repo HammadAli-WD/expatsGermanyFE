@@ -1,10 +1,34 @@
 import React from "react";
 
 import { Form, Button, Container, Row, Col } from "react-bootstrap"
-class Login extends React.Component{
-    render() {
+class Login extends React.Component {
+  state = {
+    userCredentials : {
+      email: '',
+      password: ''
+    },
+  };
+
+  componentDidMount() {
+    this.fetchUser();
+  }
+  fetchUser = async() => {
+      let resp = await fetch("http://localhost:3005/user/signIn", {
+        method: "POST",
+        credentials: 'include',
+        body: JSON.stringify(this.state.userCredentials),
+        headers: new Headers({
+          "content-Type": "application/json"
+        })
+      })
+    if (resp.ok) {
+      console.log(resp)
+    }
+    }
+  render() {
     return(
       <Container>
+      
         <Row>
           <Col>
           <Form>
@@ -32,7 +56,8 @@ class Login extends React.Component{
       </Container>
       
     )    
+    }    
     }
-}
+
 
 export default Login;
