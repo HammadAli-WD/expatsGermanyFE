@@ -4,15 +4,30 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap"
 class Login extends React.Component {
   state = {
     userCredentials : {
-      email: '',
-      password: ''
+      email: "" ,
+      password: ""
     },
   };
+setEmail = (e) => {
+  const userCredentials = this.state.userCredentials
+  userCredentials.email = e
+  this.setState({
+    userCredentials
+  }) 
+}
+setPassword = (e) => {
+  const userCredentials = this.state.userCredentials
+  userCredentials.password = e
+  this.setState({
+    userCredentials
+  })
 
-  componentDidMount() {
+}  
+login = (e) => {
+    e.preventDefault()
     this.fetchUser();
   }
-  fetchUser = async() => {
+fetchUser = async() => {
       let resp = await fetch("http://localhost:3005/user/signIn", {
         method: "POST",
         credentials: 'include',
@@ -21,20 +36,21 @@ class Login extends React.Component {
           "content-Type": "application/json"
         })
       })
-    if (resp.ok) {
-      console.log(resp)
-    }
+   this.props.history.push("/home")
     }
   render() {
     return(
-      <Container>
-      
+      <Container>      
         <Row>
           <Col>
-          <Form>
+          <Form onSubmit={this.login}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control type="email" 
+                name="email" 
+                value={this.state.email} 
+                onChange={(e) => this.setEmail(e.target.value)} 
+              />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -42,7 +58,11 @@ class Login extends React.Component {
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="password" 
+                name="password" 
+                value={this.state.password} 
+                onChange={(e) => this.setPassword(e.target.value)}
+                />
             </Form.Group>
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
