@@ -1,24 +1,37 @@
 import React, { useEffect, useState } from "react";
+import NewsHeadlines from "./NewsHeadlines";
 
 function Home() {
     const [country, setCountry] = useState("");
     const [cases, setCases] = useState("");
-    const [date, setDate] = useState("")
+    const [date, setDate] = useState("");
+    const [hasError, setHasError] = useState(false);
+    const [loading, setLoading] = useState(false)
 
     useEffect( () => {
-       fetch("http://localhost:3005/covid/liveData")
+  setLoading(true)
+       fetch("http://localhost:3005/covid/lastData")
             .then( res => res.json())
-            .then(data => {console.log(data)
+            .then(data => {console.log('COVID-LastData',data)
             setCountry(data.Country);
-            setCases(data.Cases);
+            setCases(data.Confirmed);
             setDate(data.Date)
+            setLoading(false)
             })
+            .catch(err => {setHasError(true)
+            setLoading(false)})
         }, [])
     return (
-        <h1> Country: {country} <br />
-             Cases: {cases}  <br />
-             Date: {date}      
-         </h1>
+        <>
+        {loading ? <div>Loading...</div>:
+        hasError? <div>Error</div> :
+        (<div><h2> Country: {country} <br />
+            Cases: {cases}  <br />
+            Date: {date}      
+        </h2>
+        {<NewsHeadlines />}</div>) }
+        
+         </>
 
     )
 
