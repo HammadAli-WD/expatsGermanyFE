@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NewsHeadlines from "./NewsHeadlines";
+import HackerNews from "./HackerNews";
 
 function Home() {
     const [country, setCountry] = useState("");
@@ -29,7 +29,7 @@ function Home() {
             Cases: {cases}  <br />
             Date: {date}      
         </h2>
-        {<NewsHeadlines />}</div>) }
+        {<HackerNews />}</div>) }
         
          </>
 
