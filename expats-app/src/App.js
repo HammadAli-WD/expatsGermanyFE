@@ -1,16 +1,16 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from './components/Login';
 import Home from './components/Home';
+import SocialNetwork from './components/SocialNetwork';
 
 function App() {
   return (
     <>
      <Router>
        <Switch>
-         <Route exact path= "/" component={Login} />
-         <Route path= "/home" component={Home} />
+         <Route exact path= "/" component={Home} />
+         <Route exact path= "/chat" component={SocialNetwork} />         
        </Switch>
      </Router>   
    
