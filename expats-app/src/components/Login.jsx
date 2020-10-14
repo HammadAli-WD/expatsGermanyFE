@@ -1,6 +1,7 @@
 import React from "react";
-
+import { withRouter} from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from "react-bootstrap"
+
 class Login extends React.Component {
   state = {
     userCredentials : {
@@ -36,7 +37,7 @@ fetchUser = async() => {
           "content-Type": "application/json"
         })
       })
-   this.props.history.push("/home")
+   this.props.history.push("/chat")
     }
   render() {
     return(
@@ -80,4 +81,4 @@ fetchUser = async() => {
     }
 
 
-export default Login;
+export default withRouter(Login);
