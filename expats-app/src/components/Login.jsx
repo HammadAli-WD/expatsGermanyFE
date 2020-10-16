@@ -8,6 +8,7 @@ class Login extends React.Component {
       email: "" ,
       password: ""
     },
+    isAuthenticated : false
   };
 setEmail = (e) => {
   const userCredentials = this.state.userCredentials
@@ -37,7 +38,9 @@ fetchUser = async() => {
           "content-Type": "application/json"
         })
       })
-   this.props.history.push("/chat")
+      this.state.isAuthenticated = true
+      this.props.history.push("/join")
+  
     }
   render() {
     return(
