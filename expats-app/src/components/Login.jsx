@@ -1,7 +1,8 @@
 import React from "react";
-import { withRouter} from 'react-router-dom';
+import { Link, withRouter} from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from "react-bootstrap"
-
+import { FiUpload } from 'react-icons/fi';
+import { GrFacebook, GrLinkedin } from 'react-icons/gr';
 class Login extends React.Component {
   state = {
     userCredentials : {
@@ -74,6 +75,27 @@ fetchUser = async() => {
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            <div className='logins'>
+                <a
+                  href={
+                    'http://localhost:3005/user/auth/fbSignIn'
+                  }
+                >
+                  <div className='LoginButtons'>
+                    <GrFacebook className='mr-2' /> Facebook
+                  </div>
+                </a>
+                <a
+                  href={
+                    'http://localhost:3005/user/auth/LinkedIn'
+                  }
+                >
+                  <div className='LoginButtons'>
+                    <GrLinkedin className='mr-2' /> Linkedin
+                  </div>
+                </a>
+                <a> <Link to="/signUp">Create new account</Link> </a>
+              </div>
           </Form>
           </Col>
         </Row>
