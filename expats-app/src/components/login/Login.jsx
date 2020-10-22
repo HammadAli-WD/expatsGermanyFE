@@ -40,44 +40,45 @@ fetchUser = async() => {
           "content-Type": "application/json"
         })
       })
-      this.state.isAuthenticated = true
+      if (resp.ok){
+        this.state.isAuthenticated = true
       this.props.history.push("/join")
+      }
+      
   
     }
   render() {
     return(
-      
-    <Container>
-      <Row>
-      <Col className="col-md-offset-5 col-md-4 text-center">
-      <h1 className='text-white'>Unique Login Form</h1>
-      <div className="form-login" onSubmit={this.login}><br></br>
-      
-            <Form.Group >
-              <Form.Label >Email address</Form.Label>
+      <Container styles={{ backgroundImage:`url(https://i.redd.it/o8dlfk93azs31.jpg)` }}>
+        <Row>
+          <Col className= 'text-center'>
+          <h1 className='text-white'>Unique Login Form</h1>
+          <Form onSubmit={this.login}>
+            
+              
               <Form.Control 
-              className="form-control input-sm chat-input"
-              id="inlineFormInputName2"
+              className="input-sm chat-input"
+              id="userName"
               placeholder="Email"
               type="email" 
                 name="email" 
                 value={this.state.email} 
                 onChange={(e) => this.setEmail(e.target.value)} 
               />              
-            </Form.Group>
+            
 
-            <Form.Group controlId="formGridPassword">
-              <Form.Label >Password</Form.Label>
+           
+              
               <Form.Control 
-              className="form-control input-sm chat-input"
-              id="inlineFormInputName2"
+              className="input-sm chat-input"
+              id="userPassword"
               placeholder="Password"
               type="password" 
                 name="password" 
                 value={this.state.password} 
                 onChange={(e) => this.setPassword(e.target.value)}
                 />
-            </Form.Group>           
+                     
             <Button className="mb-2" variant="primary" type="submit">
               Submit
             </Button>
@@ -102,9 +103,12 @@ fetchUser = async() => {
                 </a>
                 <a> <Link to="/signUp">Create new account</Link> </a>
               </div>
-          </div>
-    </Col></Row></Container>
-      
+          </Form>
+          
+          </Col>
+        </Row>
+      </Container>
+          
           
       
     )    
