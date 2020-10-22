@@ -1,19 +1,21 @@
 import React from "react";
 import Covid from "./Covid";
-import HackerNews from "./HackerNews";
 import Headlines from "./Headlines";
-import Login from "./Login"
+import Login from "./login/Login"
 import {Container, Row, Col, Jumbotron, Button} from 'react-bootstrap'
-import WeatherInfo from "./WeatherInfo";
-
+import WeatherInfo from "./weather/WeatherInfo";
+import HackerNews from "./hackerNews/HackerNews";
+import NavBar from "./NavBar";
 
 function Home() { 
  
     return (
         <>
+        <NavBar />
         <Container fluid>
-        <Row>
-            <Col sm={3} ><Covid /> <HackerNews /> <WeatherInfo /></Col>
+        <HackerNews />
+        <Row>        
+            <Col sm={3} ><Covid />   </Col>
             <Col sm={6}>  <Jumbotron>
             <h1>Hello, world!</h1>
             <p>
@@ -23,7 +25,7 @@ function Home() {
             <p>
                 <Button variant="primary">Learn more</Button>
             </p>
-            </Jumbotron>  
+            </Jumbotron> <WeatherInfo /> 
                 </Col>
             <Col sm={3}> <Headlines /> <Login />   </Col>
             
