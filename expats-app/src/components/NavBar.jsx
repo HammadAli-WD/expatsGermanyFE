@@ -16,8 +16,8 @@ class NavBar extends React.Component {
 					</Nav>
 					<Form inline>
                     <ListGroup  horizontal>
-                        <ListGroup.Item><a> <Link to="/signUp">Create new account</Link> </a> </ListGroup.Item>
-                        <ListGroup.Item><Link to="/login">Sign Up</Link></ListGroup.Item>
+                        <ListGroup.Item><a> <Link to="/signUp">Sign Up</Link> </a> </ListGroup.Item>
+                        <ListGroup.Item><Link to="/login">Sign In</Link></ListGroup.Item>
                     </ListGroup >
 					</Form>
 				</Navbar.Collapse>
