@@ -1,10 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from './components/Home';
 import SocialNetwork from './components/chat/SocialNetwork';
 import SignUp from './components/SignUp';
 import Login from './components/login/Login';
+import Home from './pages/Home';
 
 
 function App(props) {
