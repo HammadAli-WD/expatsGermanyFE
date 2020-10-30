@@ -57,6 +57,7 @@ const Paragraph = styled.p`
 const Background = styled.div({
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
+  marginLeft: '15px',
   
   color: "#FFF",
   position: "relative",
