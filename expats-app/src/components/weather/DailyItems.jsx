@@ -13,9 +13,9 @@ const Wrapper = styled.div`
 flex-shrink: 0;
   
   padding: 0px;
-  margin: 0 0px;
+  margin: 0px;
   border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #000000;
   &:first-child {
     margin-left: 0;
   }
@@ -24,39 +24,41 @@ flex-shrink: 0;
   }
 `
 const Text = styled.span`
-  color: ${({ color }) => color || '#000000'};
+  color: ${({ color }) => color || '#FFF'};
   display: block;
   padding: ${({ padding }) => padding || '2px'};
   margin: ${({ margin }) => margin || '2px'};
   font-size: ${({ fontSize }) => fontSize || '12px'};
   text-align: ${({ align }) => align || 'left'};
-  ${({ firstToUpperCase }) =>
-    firstToUpperCase &&
-    `
-  &:first-letter {
-    text-transform: uppercase;
+  &::first-letter {
+    text-transform: capitalize;
   }
-  `} 
+  
+ 
 `;
-function  ForecastItem({today, city, image, todaysunrise, todaysunset, todaytemp})  {
+function  ForecastItem({today, city, image, todaysunrise, todaysunset, todaytemp, todaydescription})  {
     const iconUrl = `https://openweathermap.org/img/w/${image}.png`
 
   return (
       <Container fluid>    
-        <Row>
-            <Col sm={2} className="p-0 m-0">
-                <Wrapper>
+               
+          <Text weight="800" align='center' color='#008000' ><h4>{city}</h4></Text>
+          <Text fontSize="10px" align='center' >{today}</Text>
+          <Row> 
+            <Col sm={4}> 
+            <Text fontSize="10px">Sunrise: {todaysunrise} AM</Text>
+          <Text fontSize="10px">Sunset: {todaysunset} PM</Text>
+          </Col>
+          <Col sm={4}> 
+          <Text fontSize="16px" color='#0000FF' > {todaydescription} </Text>
+          </Col>  
+          <Col sm={4}>          
                 <WeatherIcon src={iconUrl}/>
-                <Text align="center">{todaytemp}&deg;C</Text>
-                </Wrapper>
-            </Col>
-        
-          <Col sm={10} className="p-0 m-0"><Text weight="800"><h4>{city}</h4></Text>
-          <Text fontSize="10px" >{today}</Text>
-          <Text fontSize="10px">{todaysunrise}</Text>
-          <Text fontSize="10px">{todaysunset}</Text></Col>         
+                <Text align="center" color='#008000'>{todaytemp}&deg;C</Text>                
           
-          </Row>   
+          </Col> </Row>
+                 
+             
           </Container>   
       
   );

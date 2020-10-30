@@ -22,19 +22,28 @@ const Forecast = styled.div`
   
 `;
 const Div = styled.div`
-background-repeat: no-repeat;
-background-size: cover;
-background-image: url("https://www.iamexpat.de/sites/default/files/styles/article--full/public/winter-weather-coming-back-germany.jpg?itok=9-z7u_Ju");
-background-blend-mode: color-dodge;
-linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5))
+background: grey;
+  border-radius: 5px;
   
+  background-size: cover;
+  background-position: center center;
+  
+  transition: box-shadow 0.5s;
+  will-change: transform;
+  border: 15px solid white;
+
+  &:hover {
+    box-shadow: 0px 10px 10px -10px 
+  }
+
 `;
 
 function WeatherInfo() {
     
   const [response, loading, hasError] = useFetch("http://localhost:3005/weather/forecast")
   
- const cities = (lat, lon) => {
+ 
+  const cities = (lat, lon) => {
     if (lat === 52.44 & lon === 13.58 ) {
       return 'Berlin Köpenick'
   } else if (lat === 48.14 & lon === 11.58 ) {
@@ -48,13 +57,9 @@ function WeatherInfo() {
   } else {
     return 'Nothing';
   }
-  }
-
-  
-
-  
-  
+  }  
     return (
+      
        <Div>
         {console.log("data", response)}
         {loading ? 
@@ -63,7 +68,7 @@ function WeatherInfo() {
         </Spinner>:
         (hasError?<div>Error...</div>:
         (
-          <Carousel>
+          <Carousel style={{backgroundColor: '#000000'}}>
             {response.map(({lat, daily, lon, current}, i)=>
             <Carousel.Item>
               <DailyItems 

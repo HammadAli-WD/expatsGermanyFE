@@ -18,7 +18,7 @@ flex-shrink: 0;
   padding: 10px;
   margin: 0 5px;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: #000000;
   &:first-child {
     margin-left: 0;
   }
@@ -38,7 +38,7 @@ const ForecastWrapper = styled.div`
   overflow: hidden;
 `;
 const Text = styled.span`
-  color: ${({ color }) => color || '#000000'};
+  color: ${({ color }) => color || '#FFF'};
   display: block;
   font-size: ${({ fontSize }) => fontSize || '10px'};
   text-align: ${({ align }) => align || 'left'};
