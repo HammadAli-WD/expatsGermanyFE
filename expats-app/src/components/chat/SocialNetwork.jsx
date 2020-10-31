@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import io from "socket.io-client"
 import { Modal, InputGroup, FormControl, Button } from "react-bootstrap"
 
@@ -11,20 +11,53 @@ let socket = io("http://localhost:3005", {
   }, connOpt)
 
 function SocialNetwork() {
-  const [username, setUsername] = React.useState(null)
-  const [roomName, setRoomName] = React.useState(null)
+  const [user, setUser] = React.useState(null)
+  const [members, setMembers] = React.useState(null)
+  const [rooms, setRooms] = React.useState([])
+  const [room, setRoom] = React.useState(null)
   const [message, setMessage] = React.useState("")
   const [messages, setMessages] = React.useState([])
   const [connectedUsers, setConnectedUsers] = React.useState([])
   const [showModal, setShowModal] = React.useState(true)
-
+  useEffect(() => {
+    (async () => {
+        try {
+            await Promise.all([                    
+                fetch("http://localhost:3005/user/me", {
+                  method: "GET",
+                  credentials: "include",
+                })
+                .then((response) => response.json())
+                .then(data => {
+                  console.log('user',data.username)
+                  setUser(data.username)
+                })
+                .then(setUser),
+                fetch("http://localhost:3005/chatRooms", {
+                  method: "GET",
+                  credentials: "include",
+                })
+                .then((response) => response.json())
+                .then(data => {
+                  console.log('rooms',data)
+                  setRooms(data)
+                }) 
+            ])
+        } catch {
+            console.log("data fetch error")
+        }
+    })()
+}, []);   
   React.useEffect(() => {
     socket.on("message", (msg) => {
       setMessages((messages) => messages.concat(msg))
     })
-    socket.on("roomData", ({ room, users }) => {
+    socket.on("roomData", ({ rooms, users }) => {
       setConnectedUsers(users)
+      
     })
+    
+    
   }, [])
 
   const handleMessage = (e) => {
@@ -36,18 +69,18 @@ function SocialNetwork() {
 
     if (message !== "") {
       socket.emit("sendMessage", {
-        room: roomName,
+        rooms: room,
         message: message,
       })
       setMessage("")
     }
   }
-
+ 
   const toggleModal = () => {
-    if (username !== null) {
+    if (user !== null) {
       socket.emit("join", {
-        username: username,
-        room: roomName,
+        username: members,
+        room: room,
       })
       setShowModal(!showModal)
     }
@@ -56,12 +89,12 @@ function SocialNetwork() {
   return (
     <>
       <div>
-        <h1>{roomName}</h1>
+        <h1>{room}</h1>
         <ul id="messages" style={{ listStyle: "none", padding: "0 2rem" }}>
           {" "}
           {connectedUsers.map((user, i) => (
             <li key={i}>
-              <strong>{user.username}</strong>
+              <strong>{user.user}</strong>
             </li>
           ))}
         </ul>
@@ -105,28 +138,25 @@ function SocialNetwork() {
         onHide={toggleModal}
       >
         <Modal.Header>
-          <Modal.Title>Set username</Modal.Title>
+          <Modal.Title>Set user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <InputGroup className="my-2">
-            <FormControl
-              placeholder="Enter a Username"
-              onChange={(e) => setUsername(e.currentTarget.value)}
-            ></FormControl>
-          </InputGroup>
-          <InputGroup className="my-2">
-            <FormControl
-              placeholder="Enter room name"
-              onChange={(e) => setRoomName(e.currentTarget.value)}
-            ></FormControl>
-          </InputGroup>
+          
+        <ul id="messages" style={{ listStyle: "none", padding: "0 2rem" }}>
+         
+          {rooms.map((room, i) => (
+            <li key={i} onClick={()=>{ return(setRoom(room.name), setMembers(room.members[0].username))}}>
+              <strong  >{room.name}</strong>
+            </li>
+          ))}
+        </ul>
         </Modal.Body>
         <Modal.Footer>
           <Button color="primary" className="w-100" onClick={toggleModal}>
             Save
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> 
     </>
   )
 }
