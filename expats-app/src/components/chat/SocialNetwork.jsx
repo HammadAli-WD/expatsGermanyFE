@@ -1,14 +1,102 @@
 import React, { useEffect, useState } from "react"
 import io from "socket.io-client"
-import { Modal, InputGroup, FormControl, Button } from "react-bootstrap"
+import { Modal} from "react-bootstrap"
+import styled from "styled-components";
+
+const Page = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  background-color: #46516e;
+  flex-direction: column;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  max-height: 500px;
+  overflow: auto;
+  width: 400px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  margin-top: 25px;
+`;
+
+const TextArea = styled.textarea`
+  width: 98%;
+  height: 100px;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 17px;
+  background-color: transparent;
+  border: 1px solid lightgray;
+  outline: none;
+  color: lightgray;
+  letter-spacing: 1px;
+  line-height: 20px;
+  ::placeholder {
+    color: lightgray;
+  }
+`;
+
+const Button = styled.button`
+  background-color: pink;
+  width: 100%;
+  border: none;
+  height: 50px;
+  border-radius: 10px;
+  color: #46516e;
+  font-size: 17px;
+`;
+
+const Form = styled.form`
+  width: 400px;
+`;
+
+const MyRow = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+`;
+
+const MyMessage = styled.div`
+  width: 45%;
+  background-color: pink;
+  color: #46516e;
+  padding: 10px;
+  margin-right: 5px;
+  text-align: center;
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10%;
+`;
+
+const PartnerRow = styled(MyRow)`
+  justify-content: flex-start;
+`;
+
+const PartnerMessage = styled.div`
+  width: 45%;
+  background-color: transparent;
+  color: lightgray;
+  border: 1px solid lightgray;
+  padding: 10px;
+  margin-left: 5px;
+  text-align: center;
+  border-top-left-radius: 10%;
+  border-bottom-left-radius: 10%;
+`;
 
 const connOpt = {
   transports: ["websocket"],
 }
 const {accesstoken} = sessionStorage;
-let socket = io("http://localhost:3005", {
-    query: {accesstoken}
-  }, connOpt)
+let socket = io("http://localhost:3005", connOpt)
 
 function SocialNetwork() {
   const [user, setUser] = React.useState(null)
@@ -43,6 +131,7 @@ function SocialNetwork() {
                   setRooms(data)
                 }) 
             ])
+            
         } catch {
             console.log("data fetch error")
         }
@@ -54,10 +143,7 @@ function SocialNetwork() {
     })
     socket.on("roomData", ({ rooms, users }) => {
       setConnectedUsers(users)
-      
     })
-    
-    
   }, [])
 
   const handleMessage = (e) => {
@@ -79,7 +165,7 @@ function SocialNetwork() {
   const toggleModal = () => {
     if (user !== null) {
       socket.emit("join", {
-        username: members,
+        username: user,
         room: room,
       })
       setShowModal(!showModal)
@@ -88,48 +174,41 @@ function SocialNetwork() {
 
   return (
     <>
-      <div>
-        <h1>{room}</h1>
-        <ul id="messages" style={{ listStyle: "none", padding: "0 2rem" }}>
-          {" "}
+      <Page>
+      <Container>
+        <h6>{room}</h6>
+       
           {connectedUsers.map((user, i) => (
             <li key={i}>
               <strong>{user.user}</strong>
             </li>
           ))}
-        </ul>
-        <hr></hr>
-        <ul id="messages" style={{ listStyle: "none", padding: "0 2rem" }}>
-          {messages.map((msg, i) => (
-            <li key={i}>
+       
+        
+          {messages.map((msg, index) => (
+            <MyRow key={index}>
+            <MyMessage>
               <strong>{msg.sender}</strong> {msg.text} - {msg.createdAt}
-            </li>
+              </MyMessage>
+              </MyRow>
           ))}
-        </ul>
-        <form
+        </Container>
+        <Form 
           id="chat"
           onSubmit={sendMessage}
-          style={{
-            position: "fixed",
-            bottom: 0,
-            width: "100%",
-            display: "flex",
-            padding: "1rem",
-            background: "black",
-          }}
+          
         >
-          <input
+          <TextArea 
             autoComplete="off"
             value={message}
             onChange={handleMessage}
-            style={{ flex: "1 0 auto", outline: 0 }}
-            className="rounded-0 border-0"
+            
           />
-          <Button type="send" className="rounded-0">
+          <Button type="send" >
             Send
           </Button>
-        </form>
-      </div>
+        </Form >
+        </Page>
       <Modal
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
@@ -145,7 +224,7 @@ function SocialNetwork() {
         <ul id="messages" style={{ listStyle: "none", padding: "0 2rem" }}>
          
           {rooms.map((room, i) => (
-            <li key={i} onClick={()=>{ return(setRoom(room.name), setMembers(room.members[0].username))}}>
+            <li key={i} onClick={()=>{ return(setRoom(room.name))}}>
               <strong  >{room.name}</strong>
             </li>
           ))}
