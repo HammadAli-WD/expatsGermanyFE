@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Covid from "../components/covid/Covid";
-import Headlines from "../components/Headlines";
+import Headlines from "../components/headlines/Headlines";
 import {Container, Row, Col, Jumbotron, Button, Fade} from 'react-bootstrap'
 import WeatherInfo from "../components/weather/WeatherInfo";
 import HackerNews from "../components/hackerNews/HackerNews";
@@ -8,6 +8,7 @@ import NavBar from "../components/navbar/NavBar";
 import GlobalStyles from '../styles/GlobalStyles'
 import FadeIn from './FadeIn';
 import Topheader from '../components/header/Topheader';
+import Info from '../components/generalInfo/Info';
 
 class Home extends Component { 
     state = {
@@ -31,7 +32,7 @@ class Home extends Component {
            
         <Row>        
         
-            <Col sm={8}>  
+            <Col sm={8}> <Info /> 
                 </Col>
 
             <Col sm={4}> 
