@@ -1,7 +1,7 @@
 import React from "react";
 import {Media, Spinner} from 'react-bootstrap'
 import { Link } from "react-router-dom";
-import useFetch from "../HOC/UseFetch"
+import useFetch from "../../HOC/UseFetch"
 
 function Headlines() {
     
