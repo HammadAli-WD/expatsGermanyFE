@@ -217,7 +217,7 @@ function SocialNetwork() {
         onHide={toggleModal}
       >
         <Modal.Header>
-          <Modal.Title>Set user</Modal.Title>
+          <Modal.Title>Join Room</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           
