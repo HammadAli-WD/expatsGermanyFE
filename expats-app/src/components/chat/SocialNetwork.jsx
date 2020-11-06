@@ -99,7 +99,7 @@ const {accesstoken} = sessionStorage;
 let socket = io("http://localhost:3005", connOpt)
 
 function SocialNetwork() {
-  const [user, setUser] = React.useState(null)
+  const [username, setUsername] = React.useState(null)
   const [members, setMembers] = React.useState(null)
   const [rooms, setRooms] = React.useState([])
   const [room, setRoom] = React.useState(null)
@@ -117,17 +117,17 @@ function SocialNetwork() {
                 })
                 .then((response) => response.json())
                 .then(data => {
-                  console.log('user',data.username)
-                  setUser(data.username)
-                })
-                .then(setUser),
+                  console.log('user', data.username)
+                  setUsername(data.username)
+                }),
+               // .then(setUser),
                 fetch("http://localhost:3005/chatRooms", {
                   method: "GET",
                   credentials: "include",
                 })
                 .then((response) => response.json())
                 .then(data => {
-                  console.log('rooms',data)
+                  console.log('rooms',data[0])
                   setRooms(data)
                 }) 
             ])
@@ -155,7 +155,7 @@ function SocialNetwork() {
 
     if (message !== "") {
       socket.emit("sendMessage", {
-        rooms: room,
+        room: room,
         message: message,
       })
       setMessage("")
@@ -163,9 +163,9 @@ function SocialNetwork() {
   }
  
   const toggleModal = () => {
-    if (user !== null) {
+    if (username !== null) {
       socket.emit("join", {
-        username: user,
+        username: username,
         room: room,
       })
       setShowModal(!showModal)
@@ -178,12 +178,18 @@ function SocialNetwork() {
       <Container>
         <h6>{room}</h6>
        
-          {connectedUsers.map((user, i) => (
+         {/*  {connectedUsers.map((user, i) => (
             <li key={i}>
-              <strong>{user.user}</strong>
+              <h6><strong>{user.username}</strong></h6>
             </li>
-          ))}
-       
+          ))} */}
+      
+          {/* {messages.map((msg, i) => (
+            <li key={i}>
+              <strong>{msg.sender}</strong> {msg.text} - {msg.createdAt}
+            </li>
+          ))} */}
+        
         
           {messages.map((msg, index) => (
             <MyRow key={index}>
