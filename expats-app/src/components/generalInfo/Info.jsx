@@ -74,7 +74,7 @@ function Info() {
                 <Card.Body>
                    
                     <Card.Text>
-                        Information about the visa rewuirments and application process in Germany...
+                        Information about the visa requirements and application process in Germany...
                     
                     </Card.Text>
                     <Hover>
@@ -121,50 +121,58 @@ function Info() {
         <br></br>
         <h3>Learning German</h3>
         <Row >
-        
-         <Col>
+        <Col >
           <Card bg="dark" text="white" >
-           <Background>
-            <Card.Header><Card.Link href="https://www.germany-visa.org/application-process/" target="_blank">Visa Application </Card.Link></Card.Header>
+          <Card.Img variant="top" src="https://static.dw.com/image/15703236_301.jpg" />
+            <Background>
+            <Card.Header><Card.Link href="https://www.dw.com/de/deutsch-lernen/radio-d-teil-1/s-9604" target="_blank">A1 | Radio D</Card.Link></Card.Header>
                 <Card.Body>
                    
                     <Card.Text>
-                        Information about the visa rewuirments and application process in Germany...
+                    Niveaustufen: A1 <br></br>                   
+                    Sprachen: Deutsch | Englisch
                     
                     </Card.Text>
                     <Hover>
-                    <Card.Link href="https://www.schengenvisainfo.com/germany-visa/" target="_blank">View More++</Card.Link></Hover>
+                    <Card.Link href="https://www.dw.com/de/deutsch-lernen/s-2055" target="_blank">View More++</Card.Link></Hover>
                 </Card.Body>
                 </Background>
             </Card>
          </Col>
-         <Col>
-            <Card bg="dark" text="white" >
-            <Background>
-            <Card.Header><Card.Link href="https://service.berlin.de/dienstleistung/325475/en/" target="_blank">Residence Permit</Card.Link></Card.Header>
-            <Card.Body>                
-                
-                    <Card.Text>
-                    Residence permit for foreigners with a long-term residence in an EU member state...
-                    </Card.Text>
-                    <Hover>
-                    <Card.Link href="https://www.germany.info/us-en/service/visa/residence-visa/922288" target="_blank">View More++</Card.Link></Hover>
-            </Card.Body>
-            </Background>
-            </Card>
-         </Col>
-         <Col >
+        <Col >
           <Card bg="dark" text="white" >
+          <Card.Img variant="top" src="https://static.dw.com/image/16366399_301.jpg" />
             <Background>
-            <Card.Header><Card.Link href="https://nomadandinlove.com/anmeldung-english-guide/" target="_blank">Anmeldung in Germany</Card.Link></Card.Header>
+            <Card.Header><Card.Link href="https://www.dw.com/de/deutsch-lernen/harry/s-13219" target="_blank">A1, A2, B1 | Harry</Card.Link></Card.Header>
                 <Card.Body>
                    
                     <Card.Text>
-                    The Anmeldung is Germany is registering your current residence ...
+                    Niveaustufe: A1, A2, B1                    
+                    <br></br>                   
+                    Sprachen: Deutsch | Englisch
                     
                     </Card.Text>
                     <Hover>
-                    <Card.Link href="https://www.settle-in-berlin.com/anmeldung/" target="_blank">View More++</Card.Link></Hover>
+                    <Card.Link href="https://www.dw.com/de/deutsch-lernen/s-2055" target="_blank">View More++</Card.Link></Hover>
+                </Card.Body>
+                </Background>
+            </Card>
+         </Col>         
+         <Col >
+          <Card bg="dark" text="white" >
+          <Card.Img variant="top" src="https://static.dw.com/image/37307244_302.jpg" />
+            <Background>
+            <Card.Header><Card.Link href="https://www.dw.com/de/deutsch-lernen/deutsch-mobil/s-40884569" target="_blank">Deutsch mobil</Card.Link></Card.Header>
+                <Card.Body>
+                   
+                    <Card.Text>
+                    Niveaustufen: A1, A2, B1, B1+                   
+                    <br></br>                   
+                    Sprachen: Deutsch | Englisch
+                    
+                    </Card.Text>
+                    <Hover>
+                    <Card.Link href="https://www.dw.com/de/deutsch-lernen/s-2055" target="_blank">View More++</Card.Link></Hover>
                 </Card.Body>
                 </Background>
             </Card>
