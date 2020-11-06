@@ -32,7 +32,7 @@ class Home extends Component {
            
         <Row>        
         
-            <Col sm={8}> <Info /> 
+            <Col sm={8}> <FadeIn><Info /></FadeIn> 
                 </Col>
 
             <Col sm={4}> 
