@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import io from "socket.io-client"
-import { Modal} from "react-bootstrap"
+import { Modal, Image, Media } from "react-bootstrap"
 import styled from "styled-components";
 
 const Page = styled.div`
@@ -95,48 +95,50 @@ const PartnerMessage = styled.div`
 const connOpt = {
   transports: ["websocket"],
 }
-const {accesstoken} = sessionStorage;
+const { accesstoken } = sessionStorage;
 let socket = io("http://localhost:3005", connOpt)
 
 function SocialNetwork() {
   const [username, setUsername] = React.useState(null)
-  const [members, setMembers] = React.useState(null)
+
   const [rooms, setRooms] = React.useState([])
   const [room, setRoom] = React.useState(null)
   const [message, setMessage] = React.useState("")
+  const [image, setImage] = React.useState("")
   const [messages, setMessages] = React.useState([])
   const [connectedUsers, setConnectedUsers] = React.useState([])
   const [showModal, setShowModal] = React.useState(true)
   useEffect(() => {
     (async () => {
-        try {
-            await Promise.all([                    
-                fetch("http://localhost:3005/user/me", {
-                  method: "GET",
-                  credentials: "include",
-                })
-                .then((response) => response.json())
-                .then(data => {
-                  console.log('user', data.username)
-                  setUsername(data.username)
-                }),
-               // .then(setUser),
-                fetch("http://localhost:3005/chatRooms", {
-                  method: "GET",
-                  credentials: "include",
-                })
-                .then((response) => response.json())
-                .then(data => {
-                  console.log('rooms',data[0])
-                  setRooms(data)
-                }) 
-            ])
-            
-        } catch {
-            console.log("data fetch error")
-        }
+      try {
+        await Promise.all([
+          fetch("http://localhost:3005/user/me", {
+            method: "GET",
+            credentials: "include",
+          })
+            .then((response) => response.json())
+            .then(data => {
+              console.log('user', data.image)
+              setUsername(data.username)
+              setImage(data.image)
+            }),
+          // .then(setUser),
+          fetch("http://localhost:3005/chatRooms", {
+            method: "GET",
+            credentials: "include",
+          })
+            .then((response) => response.json())
+            .then(data => {
+              console.log('rooms', data[0])
+              setRooms(data)
+            })
+        ])
+
+      } catch {
+        console.log("data fetch error")
+      }
     })()
-}, []);   
+  }, []);
   React.useEffect(() => {
     socket.on("message", (msg) => {
       setMessages((messages) => messages.concat(msg))
@@ -161,7 +163,7 @@ function SocialNetwork() {
       setMessage("")
     }
   }
- 
+
   const toggleModal = () => {
     if (username !== null) {
       socket.emit("join", {
@@ -175,73 +177,93 @@ function SocialNetwork() {
   return (
     <>
       <Page>
-      <Container>
-        <h6>{room}</h6>
-       
-         {/*  {connectedUsers.map((user, i) => (
+        <Container>
+          <h6>{room}</h6>
+
+          {/*  {connectedUsers.map((user, i) => (
             <li key={i}>
               <h6><strong>{user.username}</strong></h6>
             </li>
           ))} */}
-      
+
           {/* {messages.map((msg, i) => (
             <li key={i}>
               <strong>{msg.sender}</strong> {msg.text} - {msg.createdAt}
             </li>
           ))} */}
-        
-        
+
+
           {messages.map((msg, index) => (
             <MyRow key={index}>
-            <MyMessage>
-              <strong>{msg.sender}</strong> {msg.text} - {msg.createdAt}
+              <MyMessage>
+                <strong>{msg.sender}</strong> {msg.text} - {msg.createdAt}
               </MyMessage>
-              </MyRow>
+            </MyRow>
           ))}
         </Container>
-        <Form 
+        <Form
           id="chat"
           onSubmit={sendMessage}
-          
+
         >
-          <TextArea 
+          <TextArea
             autoComplete="off"
             value={message}
             onChange={handleMessage}
-            
+
           />
           <Button type="send" >
             Send
           </Button>
         </Form >
-        </Page>
+      </Page>
+
       <Modal
-        size="lg"
+
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showModal}
         onHide={toggleModal}
+        style={{}}
       >
+
         <Modal.Header>
-          <Modal.Title>Join Room</Modal.Title>
+
+          <Modal.Title > <Image src={image} roundedCircle /> <br></br>Join Room</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          
-        <ul id="messages" style={{ listStyle: "none", padding: "0 2rem" }}>
-         
-          {rooms.map((room, i) => (
-            <li key={i} onClick={()=>{ return(setRoom(room.name))}}>
-              <strong  >{room.name}</strong>
-            </li>
-          ))}
-        </ul>
+
+          <ul id="messages" style={{ listStyle: "none", padding: "0 2rem" }}>
+
+            {rooms.map((room, i) => (
+
+              <Media as="li">
+                <img
+                  width={64}
+                  height={64}
+                  className="mr-3"
+                  src={room.image}
+                  alt="Generic placeholder"
+                />
+
+                <Media.Body>
+
+                  <li key={i} onClick={() => { return (setRoom(room.name)) }}>
+                    <strong  >{room.name}</strong>
+                  </li>
+                </Media.Body>
+              </Media>
+            ))}
+          </ul>
+
         </Modal.Body>
         <Modal.Footer>
-          <Button color="primary" className="w-100" onClick={toggleModal}>
+          <Button color="primary" onClick={toggleModal}>
             Save
           </Button>
         </Modal.Footer>
-      </Modal> 
+      </Modal>
+
     </>
   )
 }
