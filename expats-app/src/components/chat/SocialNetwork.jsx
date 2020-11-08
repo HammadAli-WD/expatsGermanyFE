@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import io from "socket.io-client"
 import { Modal, Image, Media } from "react-bootstrap"
 import styled from "styled-components";
+import Welcome from 'react-welcome-page'
 
 const Page = styled.div`
   display: flex;
@@ -140,12 +141,14 @@ function SocialNetwork() {
     })()
   }, []);
   React.useEffect(() => {
+    socket.on("roomData", ({ rooms, users }) => {
+      setConnectedUsers(users)
+      console.log("tedUsers", users)
+    })
     socket.on("message", (msg) => {
       setMessages((messages) => messages.concat(msg))
     })
-    socket.on("roomData", ({ rooms, users }) => {
-      setConnectedUsers(users)
-    })
+
   }, [])
 
   const handleMessage = (e) => {
@@ -176,15 +179,16 @@ function SocialNetwork() {
 
   return (
     <>
+
       <Page>
         <Container>
           <h6>{room}</h6>
-
-          {/*  {connectedUsers.map((user, i) => (
+          {console.log("ConnectedUsers", connectedUsers)}
+          {connectedUsers.map((u, i) => (
             <li key={i}>
-              <h6><strong>{user.username}</strong></h6>
+              <h1><strong>{u.username}</strong></h1>
             </li>
-          ))} */}
+          ))}
 
           {/* {messages.map((msg, i) => (
             <li key={i}>
@@ -219,12 +223,11 @@ function SocialNetwork() {
       </Page>
 
       <Modal
-
+        size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showModal}
         onHide={toggleModal}
-        style={{}}
       >
 
         <Modal.Header>
@@ -248,17 +251,32 @@ function SocialNetwork() {
 
                 <Media.Body>
 
-                  <li key={i} onClick={() => { return (setRoom(room.name)) }}>
+                  <li key={i} onClick={() => {
+                    setRoom(room.name)
+                    if (username !== null) {
+                      socket.emit("join", {
+                        username: username,
+                        room: room.name,
+                      })
+                      setShowModal(!showModal)
+                    }
+                  }}>
                     <strong  >{room.name}</strong>
                   </li>
                 </Media.Body>
               </Media>
+
+
+
+
+
+
             ))}
           </ul>
 
         </Modal.Body>
         <Modal.Footer>
-          <Button color="primary" onClick={toggleModal}>
+          <Button color="primary" className="w-100" onClick={toggleModal}>
             Save
           </Button>
         </Modal.Footer>
