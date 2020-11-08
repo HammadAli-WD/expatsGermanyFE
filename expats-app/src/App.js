@@ -16,7 +16,7 @@ function App(props) {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/join" exact component={SocialNetwork} />
-          {/* <Route exact path="/rooms/:room" component={props => <Messages room={props.match.params.room} />} /> */}
+          <Route path="/rooms/:room" component={props => <Messages room={props.match.params.room} />} />
           <Route path="/rooms" exact component={ChatRooms} />
           <Route path="/signUp" exact component={SignUp} />
           <Route path="/login" exact component={Login} />
