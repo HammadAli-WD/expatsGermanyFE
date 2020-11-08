@@ -199,7 +199,7 @@ class Login extends React.Component {
     })
     if (resp.ok) {
       this.state.isAuthenticated = true
-      this.props.history.push("/join")
+      this.props.history.push("/rooms")
     }
 
 
