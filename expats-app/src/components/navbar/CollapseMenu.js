@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link, withRouter} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
 const CollapseWrapper = styled(animated.div)`
   background: #2d3436;
@@ -37,19 +37,21 @@ const CollapseMenu = (props) => {
 
   if (props.navbarState === true) {
     return (
-      <CollapseWrapper style={{
-        transform: open.interpolate({
-          range: [0, 0.2, 0.3, 1],
-          output: [0, -20, 0, -200],
-        }).interpolate(openValue => `translate3d(0, ${openValue}px, 0`),
-      }}
-      >
-        <NavLinks>
-        <li><a href="/" onClick={props.handleNavbar}><Link to="/signUp">Sign Up</Link></a></li>
-          <li><a href="/" onClick={props.handleNavbar}><Link to="/login">Sign In</Link></a></li>
-        
-        </NavLinks>
-      </CollapseWrapper>
+      <div>
+        <CollapseWrapper style={{
+          transform: open.interpolate({
+            range: [0, 0.2, 0.3, 1],
+            output: [0, -20, 0, -200],
+          }).interpolate(openValue => `translate3d(0, ${openValue}px, 0`),
+        }}
+        >
+          <NavLinks>
+            <li><a href="/" onClick={props.handleNavbar}><Link to="/signUp">Sign Up</Link></a></li>
+            <li><a href="/" onClick={props.handleNavbar}><Link to="/login">Sign In</Link></a></li>
+
+          </NavLinks>
+        </CollapseWrapper>
+      </div>
     );
   }
   return null;
