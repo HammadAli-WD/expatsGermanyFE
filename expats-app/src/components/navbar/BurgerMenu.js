@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   padding-top: .7rem;
   cursor: pointer;
   display: block;
+  margin-right: 30px;
 
   & span {
     background: #fdcb6e;
@@ -33,13 +34,15 @@ const Wrapper = styled.div`
 `;
 const BurgerMenu = (props) => {
   return (
-    <Wrapper onClick={props.handleNavbar}>
-      <div className={ props.navbarState ? "open" : "" }>
-        <span>&nbsp;</span>
-        <span>&nbsp;</span>
-        <span>&nbsp;</span>
-      </div>
-    </Wrapper>
+    <div>
+      <Wrapper onClick={props.handleNavbar}>
+        <div className={props.navbarState ? "open" : ""}>
+          <span>&nbsp;</span>
+          <span>&nbsp;</span>
+          <span>&nbsp;</span>
+        </div>
+      </Wrapper>
+    </div>
   );
 }
 
