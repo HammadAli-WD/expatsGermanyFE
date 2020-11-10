@@ -1,10 +1,11 @@
 import React, { useEffect, Component } from "react"
 import io from "socket.io-client"
-import { Image, Media, Container } from "react-bootstrap"
+import { Image, Media } from "react-bootstrap"
 import styled, { keyframes } from "styled-components";
 import { Animated } from "react-animated-css";
 import ParticlesBg from "particles-bg";
 import { Link, withRouter } from 'react-router-dom';
+import NavBar from "../navbar/NavBar";
 const connOpt = {
   transports: ["websocket"],
 }
@@ -74,20 +75,17 @@ function ChatRooms(props) {
 
   return (
     <>
+      <NavBar />
       <ParticlesBg type="custom" config={config} bg={true} />
       <Animated animationIn="zoomInDown" animationOut="zoomOutDown" animationInDuration={2000} animationOutDuration={1400} isVisible={isVisible}>
-        <div style={{ width: '100vw', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', display: "flex", flexDirection: "column" }}>
+        <div style={{ padding: "50px 5px 15px 20px", width: '100vw', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', display: "flex", flexDirection: "column" }}>
           <div style={{ padding: "10px 5px 15px 20px", textShadow: "1px 1px 0px #ff0000" }}>
             <h2 style={{ display: "flex", justifyContent: 'center', alignItems: 'center' }} >Welcome</h2>
             <p>Select the group for social connection with fellow members</p></div>
-
-
-
           {rooms.map((room, i) => (
 
             <Media as="li" style={{ padding: "10px 5px 15px 20px" }}>
-              <Image style={{ height: "200%" }} src={room.image} alt="Generic placeholder" />
-
+              <Image style={{ width: "250px" }} src={room.image} alt="Generic placeholder" />
 
               <Media.Body style={{ padding: "10px 5px 15px 20px" }}>
 
@@ -105,6 +103,7 @@ function ChatRooms(props) {
               </Media.Body>
             </Media>
           ))}
+
         </div>
       </Animated>
     </>
