@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import io from "socket.io-client"
 import { Modal, Image, Media } from "react-bootstrap"
 import styled from "styled-components";
-import Welcome from 'react-welcome-page'
 
 const Page = styled.div`
   display: flex;
