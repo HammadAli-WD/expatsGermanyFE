@@ -2,24 +2,26 @@ import React, { useEffect, useState } from "react"
 import io from "socket.io-client"
 import { Modal, Image, Media } from "react-bootstrap"
 import styled from "styled-components";
+import NavBar from "../navbar/NavBar";
+import moment from "moment";
 
 const Page = styled.div`
   display: flex;
   height: 100vh;
+  margin-top: 50px;
   width: 100%;
-  align-items: center;
-  background-color: #46516e;
+  align-items: center;  
   flex-direction: column;
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 500px;
-  max-height: 500px;
+  height: 450px;
+  max-height: 450px;
   overflow: auto;
-  width: 400px;
-  border: 1px solid lightgray;
+  width: 390px;
+  border: 1px solid #2d3436;
   border-radius: 10px;
   padding-bottom: 10px;
   margin-top: 25px;
@@ -27,30 +29,30 @@ const Container = styled.div`
 
 const TextArea = styled.textarea`
   width: 98%;
-  height: 100px;
+  height: 50px;
   border-radius: 10px;
   margin-top: 10px;
   padding-left: 10px;
   padding-top: 10px;
   font-size: 17px;
   background-color: transparent;
-  border: 1px solid lightgray;
+  border: 1px solid #2d3436;
   outline: none;
-  color: lightgray;
+  color: #2d3436;
   letter-spacing: 1px;
   line-height: 20px;
   ::placeholder {
-    color: lightgray;
+    color: #2d3436;
   }
 `;
 
 const Button = styled.button`
-  background-color: pink;
+  background-color: #2d3436;
   width: 100%;
   border: none;
   height: 50px;
   border-radius: 10px;
-  color: #46516e;
+  color: #FFFFFF;
   font-size: 17px;
 `;
 
@@ -66,12 +68,12 @@ const MyRow = styled.div`
 `;
 
 const MyMessage = styled.div`
-  width: 45%;
-  background-color: pink;
+  width: 65%;
+  background-color: #F8F8F8;
   color: #46516e;
-  padding: 10px;
-  margin-right: 5px;
-  text-align: center;
+  padding: 1px;
+  margin-right: 5px; 
+  text-align: justify;
   border-top-right-radius: 10%;
   border-bottom-right-radius: 10%;
 `;
@@ -83,8 +85,8 @@ const PartnerRow = styled(MyRow)`
 const PartnerMessage = styled.div`
   width: 45%;
   background-color: transparent;
-  color: lightgray;
-  border: 1px solid lightgray;
+  color: #2d3436;
+  border: 1px solid #2d3436;
   padding: 10px;
   margin-left: 5px;
   text-align: center;
@@ -93,122 +95,136 @@ const PartnerMessage = styled.div`
 `;
 
 const connOpt = {
-    transports: ["websocket"],
+  transports: ["websocket"],
 }
 const { accesstoken } = sessionStorage;
 let socket = io("http://localhost:3005", connOpt)
 
 function Messages({ room }) {
 
-    const [username, setUsername] = React.useState(null)
-
-    const [message, setMessage] = React.useState("")
-    const [messages, setMessages] = React.useState([])
-    const [connectedUsers, setConnectedUsers] = React.useState([])
-
-
-
-    useEffect(() => {
-
-        try {
-
-            fetch("http://localhost:3005/user/me", {
-                method: "GET",
-                credentials: "include",
-            })
-                .then((response) => response.json())
-                .then(data => {
-                    console.log('username', data.username)
-                    socket.emit("join", {
-                        username: data.username,
-                        room: room,
-                    })
-
-                })
-            // .then(setUser),
+  const [username, setUsername] = React.useState(null)
+  const [image, setImage] = React.useState("")
+  const [message, setMessage] = React.useState("")
+  const [messages, setMessages] = React.useState([])
+  const [connectedUsers, setConnectedUsers] = React.useState([])
 
 
 
-        } catch {
-            console.log("data fetch error")
-        }
+  useEffect(() => {
 
-    }, []);
+    try {
 
-    React.useEffect(() => {
-
-
-        socket.on("message", (msg) => {
-            setMessages((messages) => messages.concat(msg))
+      fetch("http://localhost:3005/user/me", {
+        method: "GET",
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then(data => {
+          console.log('username', data.username)
+          socket.emit("join", {
+            username: data.username,
+            room: room,
+          })
+          setImage(data.image)
         })
-        socket.on("roomData", ({ rooms, users }) => {
-            setConnectedUsers(users)
-        })
-    }, [])
+      // .then(setUser),
 
-    const handleMessage = (e) => {
-        setMessage(e.currentTarget.value)
+
+
+    } catch {
+      console.log("data fetch error")
     }
 
-    const sendMessage = (e) => {
-        e.preventDefault()
+  }, []);
 
-        if (message !== "") {
-            socket.emit("sendMessage", {
-                room: room,
-                message: message,
-            })
-            setMessage("")
-        }
+  React.useEffect(() => {
+
+
+    socket.on("message", (msg) => {
+      setMessages((messages) => messages.concat(msg))
+    })
+    socket.on("roomData", ({ rooms, users }) => {
+      setConnectedUsers(users)
+    })
+  }, [])
+
+  const handleMessage = (e) => {
+    setMessage(e.currentTarget.value)
+  }
+
+  const sendMessage = (e) => {
+    e.preventDefault()
+
+    if (message !== "") {
+      socket.emit("sendMessage", {
+        room: room,
+        message: message,
+        image: image
+      })
+      setMessage("")
     }
+  }
 
-    return (
-        <>
-            <Page>
-                <Container>
-                    <h6>{room} {username} </h6>
+  return (
+    <>
+      <NavBar />
+      <Page>
+        <Container>
+          <h4 style={{ textShadow: "1px 1px 0px #ff0000", justifyContent: 'center', alignItems: 'center', display: "flex" }}> {room} </h4>
 
-                    {/*  {connectedUsers.map((user, i) => (
+          {/*  {connectedUsers.map((user, i) => (
             <li key={i}>
               <h6><strong>{user.username}</strong></h6>
             </li>
           ))} */}
 
-                    {/* {messages.map((msg, i) => (
+          {/* {messages.map((msg, i) => (
             <li key={i}>
               <strong>{msg.sender}</strong> {msg.text} - {msg.createdAt}
             </li>
           ))} */}
 
+          {console.log('messssssssssssss', messages)}
+          {messages.map((msg, index) => (
+            <MyRow key={index}>
+              <MyMessage>
+                <Media as="li">
+                  <Image style={{ padding: "0px", marginRight: "5px", marginBottom: "0px", width: '40px' }}
+                    src={msg.image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png'}
+                    roundedCircle />
 
-                    {messages.map((msg, index) => (
-                        <MyRow key={index}>
-                            <MyMessage>
-                                <strong>{msg.sender}</strong> {msg.text} - {msg.createdAt}
-                            </MyMessage>
-                        </MyRow>
-                    ))}
-                </Container>
-                <Form
-                    id="chat"
-                    onSubmit={sendMessage}
+                  <Media.Body>
+                    <p style={{ padding: "0px", marginRight: "3px", marginBottom: "0px" }}> <strong>{msg.sender} says: </strong> {msg.text}</p>
+                    <nobr><p style={{ color: '#696969', fontStyle: "italic", fontSize: '70%', padding: "0px", marginTop: "0px", marginRight: "4px", textAlign: 'right' }}>
+                      sent at: {moment(msg.createdAt).format("HH:mm:ss")} </p></nobr>
 
-                >
-                    <TextArea
-                        autoComplete="off"
-                        value={message}
-                        onChange={handleMessage}
 
-                    />
-                    <Button type="send" >
-                        Send
+                  </Media.Body>
+                </Media>
+              </MyMessage>
+            </MyRow>
+          ))}
+        </Container>
+        <Form
+          id="chat"
+          onSubmit={sendMessage}
+
+        >
+          <TextArea
+            autoComplete="off"
+            value={message}
+            onChange={handleMessage}
+
+          />
+          <Button type="send" >
+            Send
           </Button>
-                </Form >
-            </Page>
+        </Form >
+      </Page>
 
 
-        </>
-    )
+    </>
+  )
 }
 
 export default Messages
