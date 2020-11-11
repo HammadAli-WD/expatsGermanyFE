@@ -7,6 +7,7 @@ import Login from './components/login/Login';
 import Home from './pages/Home';
 import ChatRooms from './components/chat/ChatRooms';
 import Messages from './components/chat/Messages';
+import SignOut from './components/signout/SignOut';
 
 
 function App(props) {
@@ -20,6 +21,7 @@ function App(props) {
           <Route path="/rooms" exact component={ChatRooms} />
           <Route path="/signUp" exact component={SignUp} />
           <Route path="/login" exact component={Login} />
+          <Route path="/logout" exact component={SignOut} />
         </Switch>
       </Router>
 
