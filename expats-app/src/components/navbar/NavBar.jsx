@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
-import { Link, withRouter} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import ImageNavbar from "./ImageNavbar";
 import BurgerMenu from "./BurgerMenu";
@@ -17,9 +17,6 @@ const NavBar = styled(animated.nav)`
   background: #2d3436;
   z-index: 1;
   font-size: 1rem;
-  
-  
-  
   
 `;
 
@@ -51,61 +48,49 @@ const NavLinks = styled(animated.ul)`
       color: #fdcb6e;
       border-bottom: 1px solid #fdcb6e;
     }
-
-    @media (max-width: 768px) {
-      display: none;
-    }
+   
   }
 `;
 
 const BurgerWrapper = styled.div`
   margin: auto 0;
 
-  @media (min-width: 769px) {
+  @media (min-width: 702px) {
     display: none;
   }
 `;
 
 const Navbar = (props) => {
-    const barAnimation = useSpring({
-      from: { transform: 'translate3d(0, -10rem, 0)' },
-      transform: 'translate3d(0, 0, 0)',
-    });
-  
-    const linkAnimation = useSpring({
-      from: { transform: 'translate3d(0, 30px, 0)', opacity: 0 },
-      to: { transform: 'translate3d(0, 0, 0)', opacity: 1 },
-      delay: 800,
-      config: config.wobbly,
-    });
-  
-    return (
-      <>
-        <NavBar style={barAnimation}>
-          <FlexContainer>
-            <ImageNavbar />
-            <NavLinks style={linkAnimation}>
-              <a><Link to="/signUp">Sign Up</Link></a>
-              <a ><Link to="/login">Sign In</Link></a>
-              
-            </NavLinks>
-            <BurgerWrapper>
-              <BurgerMenu
-                navbarState={props.navbarState} 
-                handleNavbar={props.handleNavbar}
-              />
-            </BurgerWrapper>
-          </FlexContainer>
-        </NavBar>
-        <CollapseMenu 
-          navbarState={props.navbarState} 
-          handleNavbar={props.handleNavbar}
-        />
-     </>
-    )
-  }
-  
-  export default withRouter(Navbar)
+  const barAnimation = useSpring({
+    from: { transform: 'translate3d(0, -10rem, 0)' },
+    transform: 'translate3d(0, 0, 0)',
+  });
+
+  const linkAnimation = useSpring({
+    from: { transform: 'translate3d(0, 30px, 0)', opacity: 0 },
+    to: { transform: 'translate3d(0, 0, 0)', opacity: 1 },
+    delay: 800,
+    config: config.wobbly,
+  });
+
+  return (
+    <>
+      <NavBar style={barAnimation}>
+        <FlexContainer>
+          <ImageNavbar />
+          <NavLinks style={linkAnimation}>
+            <a><Link to={props.link}>{props.name}</Link></a>
+            {/* <a ><Link to={props.link}>{props.name}</Link></a> */}
+
+          </NavLinks>
+        </FlexContainer>
+      </NavBar>
+
+    </>
+  )
+}
+
+export default withRouter(Navbar)
 
 
 
