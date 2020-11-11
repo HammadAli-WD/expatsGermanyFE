@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   padding-top: .7rem;
   cursor: pointer;
   display: block;
-  margin-right: 30px;
+  margin-right: 20px;
 
   & span {
     background: #fdcb6e;
