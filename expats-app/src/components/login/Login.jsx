@@ -4,11 +4,13 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap"
 import { GrFacebook, GrLinkedin } from 'react-icons/gr';
 import styled, { css } from 'styled-components'
 import { propTypes } from "react-bootstrap/esm/Image";
+import NavBar from "../navbar/NavBar";
+
 
 const CardWrapper = styled.div`
   overflow: hidden;
   padding: 0 0 32px;
-  margin: 48px auto 0;
+  margin: 70px auto 0;
   width: 300px;
   font-family: Quicksand, arial, sans-serif;
   box-shadow: 0 0 20px rgba(0, 0, 0, .05), 0 0px 40px rgba(0, 0, 0, .08);
@@ -162,8 +164,10 @@ const CardLink = styled.a`
 `
 
 class Login extends React.Component {
+
   state = {
     userCredentials: {
+      user: "",
       email: "",
       password: ""
     },
@@ -188,6 +192,8 @@ class Login extends React.Component {
     e.preventDefault()
     this.fetchUser();
   }
+
+
   fetchUser = async () => {
     let resp = await fetch("http://localhost:3005/user/signIn", {
       method: "POST",
@@ -206,147 +212,91 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <CardWrapper>
-        <CardHeader>
-          <CardHeading>Log In</CardHeading>
-        </CardHeader>
+      <>
+        <NavBar link="/signUp" name='Sign Up' />
+        <CardWrapper>
+          <CardHeader>
+            <CardHeading>Log In</CardHeading>
+          </CardHeader>
 
-        <CardBody>
-          <StyledForm
-            onSubmit={this.login}
+          <CardBody>
+            <StyledForm
+              onSubmit={this.login}
 
-          >
+            >
+              <CardFieldset>
+                <CardInput
+                  value={this.state.email}
+                  onChange={(e) => this.setEmail(e.target.value)}
+                  placeholder='Email'
+                  type='text'
+                  id='email'
+                  required
+                />
+              </CardFieldset>
+              <CardFieldset>
+                <CardInput
+                  value={this.state.password}
+                  onChange={(e) => this.setPassword(e.target.value)}
+                  placeholder='Password'
+                  type='password'
+                  id='password'
+                  required
+                />
+
+                <CardIcon
+                  onClick={this.revealPassword}
+                  className='fa fa-eye'
+                  eye
+                  small
+                />
+              </CardFieldset>
+              <CardFieldset>
+                <CardButton block type='submit'>Sign In</CardButton>
+              </CardFieldset>
+            </StyledForm>
             <CardFieldset>
-              <CardInput
-                value={this.state.email}
-                onChange={(e) => this.setEmail(e.target.value)}
-                placeholder='Email'
-                type='text'
-                id='email'
-                required
-              />
-            </CardFieldset>
-            <CardFieldset>
-              <CardInput
-                value={this.state.password}
-                onChange={(e) => this.setPassword(e.target.value)}
-                placeholder='Password'
-                type='password'
-                id='password'
-                required
-              />
+              <CardOptionsNote>Or sign in with</CardOptionsNote>
 
-              <CardIcon
-                onClick={this.revealPassword}
-                className='fa fa-eye'
-                eye
-                small
-              />
-            </CardFieldset>
-            <CardFieldset>
-              <CardButton block type='submit'>Sign In</CardButton>
-            </CardFieldset>
-          </StyledForm>
-          <CardFieldset>
-            <CardOptionsNote>Or sign in with</CardOptionsNote>
-
-            <CardOptions>
-              <CardOptionsItem>
-                <a
-                  href={
-                    'http://localhost:3005/user/auth/fbSignIn'
-                  }
-                >
-                  <div className='LoginButtons'>
-                    <GrFacebook className='mr-2' /> Facebook
+              <CardOptions>
+                <CardOptionsItem>
+                  <a
+                    href={
+                      'http://localhost:3005/user/auth/fbSignIn'
+                    }
+                  >
+                    <div className='LoginButtons'>
+                      <GrFacebook className='mr-2' /> Facebook
                   </div>
-                </a>
-              </CardOptionsItem>
+                  </a>
+                </CardOptionsItem>
 
-              <CardOptionsItem>
-                <a
-                  href={
-                    'http://localhost:3005/user/auth/LinkedIn'
-                  }
-                >
-                  <div className='LoginButtons'>
-                    <GrLinkedin className='mr-2' /> Linkedin
+                <CardOptionsItem>
+                  <a
+                    href={
+                      'http://localhost:3005/user/auth/LinkedIn'
+                    }
+                  >
+                    <div className='LoginButtons'>
+                      <GrLinkedin className='mr-2' /> Linkedin
                   </div>
-                </a>
-              </CardOptionsItem>
+                  </a>
+                </CardOptionsItem>
 
-              <CardOptionsItem>
-                <a> <Link to="/signUp">Create new account</Link> </a>
-              </CardOptionsItem>
-            </CardOptions>
-          </CardFieldset>
-          <CardFieldset>
-            <CardLink>I already have an account</CardLink>
-          </CardFieldset>
-        </CardBody>
-      </CardWrapper>
+                <CardOptionsItem>
+                  <a> <Link to="/signUp">Create new account</Link> </a>
+                </CardOptionsItem>
+              </CardOptions>
+            </CardFieldset>
+            <CardFieldset>
+              <CardLink>I already have an account</CardLink>
+            </CardFieldset>
+          </CardBody>
+        </CardWrapper>
 
 
-      /*  <Container styles={{ backgroundImage:`url(https://i.redd.it/o8dlfk93azs31.jpg)` }}>
-         <Row>
-           <Col className= 'text-center'>
-           <h1 className='text-white'>Unique Login Form</h1>
-           <Form onSubmit={this.login}>
-             
-               
-               <Form.Control 
-               className="input-sm chat-input"
-               id="userName"
-               placeholder="Email"
-               type="email" 
-                 name="email" 
-                 value={this.state.email} 
-                 onChange={(e) => this.setEmail(e.target.value)} 
-               />              
-             
- 
-            
-               
-               <Form.Control 
-               className="input-sm chat-input"
-               id="userPassword"
-               placeholder="Password"
-               type="password" 
-                 name="password" 
-                 value={this.state.password} 
-                 onChange={(e) => this.setPassword(e.target.value)}
-                 />
-                      
-             <Button className="mb-2" variant="primary" type="submit">
-               Submit
-             </Button>
-             <div className='logins'>
-                 <a
-                   href={
-                     'http://localhost:3005/user/auth/fbSignIn'
-                   }
-                 >
-                   <div className='LoginButtons'>
-                     <GrFacebook className='mr-2' /> Facebook
-                   </div>
-                 </a>
-                 <a
-                   href={
-                     'http://localhost:3005/user/auth/LinkedIn'
-                   }
-                 >
-                   <div className='LoginButtons'>
-                     <GrLinkedin className='mr-2' /> Linkedin
-                   </div>
-                 </a>
-                 <a> <Link to="/signUp">Create new account</Link> </a>
-               </div>
-           </Form>
-           
-           </Col>
-         </Row>
-       </Container> */
 
+      </>
 
 
     )
@@ -354,4 +304,4 @@ class Login extends React.Component {
 }
 
 
-export default withRouter(Login);
+export default Login;
