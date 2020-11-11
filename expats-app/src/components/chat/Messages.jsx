@@ -167,7 +167,7 @@ function Messages({ room }) {
 
   return (
     <>
-      <NavBar />
+      <NavBar link='/logout' name='SignOut' />
       <Page>
         <Container>
           <h4 style={{ textShadow: "1px 1px 0px #ff0000", justifyContent: 'center', alignItems: 'center', display: "flex" }}> {room} </h4>
