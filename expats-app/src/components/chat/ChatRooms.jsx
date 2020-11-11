@@ -75,7 +75,7 @@ function ChatRooms(props) {
 
   return (
     <>
-      <NavBar />
+      <NavBar link='/logout' name='SignOut' />
       <ParticlesBg type="custom" config={config} bg={true} />
       <Animated animationIn="zoomInDown" animationOut="zoomOutDown" animationInDuration={2000} animationOutDuration={1400} isVisible={isVisible}>
         <div style={{ padding: "50px 5px 15px 20px", width: '100vw', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', display: "flex", flexDirection: "column" }}>
