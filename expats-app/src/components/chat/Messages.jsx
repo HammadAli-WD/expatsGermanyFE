@@ -1,25 +1,32 @@
 import React, { useEffect, useState } from "react"
-import io from "socket.io-client"
-import { Modal, Image, Media } from "react-bootstrap"
+import io from "socket.io-client";
+import { Media, Image } from 'react-bootstrap'
+import { Card, Avatar, Input, Typography } from 'antd';
+import 'antd/dist/antd.css';
 import styled from "styled-components";
 import NavBar from "../navbar/NavBar";
 import moment from "moment";
 
+const { Meta } = Card;
 const Page = styled.div`
+  
+  overflow: hidden;
+  position: relative;
   display: flex;
-  height: 100vh;
-  margin-top: 50px;
-  width: 100%;
+  margin-top: 50px;  
   align-items: center;  
-  flex-direction: column;
+  flex-direction: column; 
+
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  
   height: 450px;
   max-height: 450px;
-  overflow: auto;
+  height: 80vh;
+  overflow: hidden;
   width: 390px;
   border: 1px solid #2d3436;
   border-radius: 10px;
@@ -120,11 +127,12 @@ function Messages({ room }) {
       })
         .then((response) => response.json())
         .then(data => {
-          console.log('username', data.username)
+          console.log('username', data)
           socket.emit("join", {
             username: data.username,
             room: room,
           })
+          setUsername(data.username)
           setImage(data.image)
         })
       // .then(setUser),
@@ -159,7 +167,8 @@ function Messages({ room }) {
       socket.emit("sendMessage", {
         room: room,
         message: message,
-        image: image
+        image: image,
+
       })
       setMessage("")
     }
@@ -167,8 +176,9 @@ function Messages({ room }) {
 
   return (
     <>
-      <NavBar link='/logout' name='SignOut' />
+
       <Page>
+        <NavBar link='/logout' name='SignOut' />
         <Container>
           <h4 style={{ textShadow: "1px 1px 0px #ff0000", justifyContent: 'center', alignItems: 'center', display: "flex" }}> {room} </h4>
 
@@ -186,7 +196,23 @@ function Messages({ room }) {
 
           {console.log('messssssssssssss', messages)}
           {messages.map((msg, index) => (
-            <MyRow key={index}>
+            <Card key={index} bodyStyle={{ padding: "8px" }} style={{ width: 250, margin: '16px 4px 0 4px', alignSelf: username === msg.sender ? 'flex-end' : 'flex-start' }} loading={false} >
+              <Meta
+                avatar={
+                  msg.image ? <Image style={{ padding: "0px", marginRight: "5px", marginBottom: "0px", width: '40px' }}
+                    src={msg.image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/220px-User_icon_2.svg.png'}
+                    roundedCircle />
+                    :
+                    <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>{msg.sender}
+                    </Avatar>
+                }
+                title={msg.sender}
+                description={msg.text}
+              />
+              <nobr><p style={{ color: '#696969', fontStyle: "italic", fontSize: '70%', padding: "0px", marginTop: "0px", marginRight: "4px", textAlign: 'right' }}>
+                sent at: {moment(msg.createdAt).format("HH:mm:ss")} </p></nobr>
+            </Card>
+            /* <MyRow key={index}>
               <MyMessage>
                 <Media as="li">
                   <Image style={{ padding: "0px", marginRight: "5px", marginBottom: "0px", width: '40px' }}
@@ -194,7 +220,7 @@ function Messages({ room }) {
                     roundedCircle />
 
                   <Media.Body>
-                    <p style={{ padding: "0px", marginRight: "3px", marginBottom: "0px" }}> <strong>{msg.sender} says: </strong> {msg.text}</p>
+                    <p style={{ padding: "0px", marginRight: "3px", marginBottom: "0px" }}> <strong>{msg.sender[0]} says: </strong> {msg.text}</p>
                     <nobr><p style={{ color: '#696969', fontStyle: "italic", fontSize: '70%', padding: "0px", marginTop: "0px", marginRight: "4px", textAlign: 'right' }}>
                       sent at: {moment(msg.createdAt).format("HH:mm:ss")} </p></nobr>
 
@@ -202,7 +228,7 @@ function Messages({ room }) {
                   </Media.Body>
                 </Media>
               </MyMessage>
-            </MyRow>
+            </MyRow> */
           ))}
         </Container>
         <Form
