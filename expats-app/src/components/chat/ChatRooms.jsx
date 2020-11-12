@@ -78,7 +78,7 @@ function ChatRooms(props) {
       <NavBar link='/logout' name='SignOut' />
       <ParticlesBg type="custom" config={config} bg={true} />
       <Animated animationIn="zoomInDown" animationOut="zoomOutDown" animationInDuration={2000} animationOutDuration={1400} isVisible={isVisible}>
-        <div style={{ padding: "50px 5px 15px 20px", width: '100vw', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', display: "flex", flexDirection: "column" }}>
+        <div style={{ overflow: 'hidden', padding: "50px 5px 15px 20px", width: '100vw', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', display: "flex", flexDirection: "column" }}>
           <div style={{ padding: "10px 5px 15px 20px", textShadow: "1px 1px 0px #ff0000" }}>
             <h2 style={{ display: "flex", justifyContent: 'center', alignItems: 'center' }} >Welcome</h2>
             <p>Select the group for social connection with fellow members</p></div>
