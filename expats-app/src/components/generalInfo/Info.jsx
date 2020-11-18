@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, Row, Col, Media, Image } from 'react-bootstrap';
+import { Card, Row, Col, Media, Image, Container } from 'react-bootstrap';
 import styled from 'styled-components'
-
+import FadeIn from "../../pages/FadeIn";
 const Hover = styled.div({
   opacity: 0,
   transition: "opacity 350ms ease",
@@ -65,13 +65,15 @@ const CTA = styled.a({
 function Info() {
      
     return (
-        <>
+      <>
+        <Container>
+          <FadeIn>
         <Paragraph>Bureaucracy in Germany for Expatriates</Paragraph>
         <Row >
         
          <Col xs={12} md={4}>
           <Card bg="dark" text="white" >
-              <Card.Img style={{ height: "100%" }} variant="top"
+              <Card.Img style={{ height: "80% !important" }} variant="top"
                 src="https://germany-simplified.com/wp-content/uploads/2020/10/Germany_Simplified_Blog_2WorkVisa.png" />
            <Background>
                 <Card.Header>
@@ -93,7 +95,7 @@ function Info() {
          </Col>
          <Col xs={12} md={4}>
             <Card bg="dark" text="white" >
-              <Card.Img style={{ height: "100%" }} variant="top"
+                <Card.Img style={{ height: "80% !important" }} variant="top"
                 src="https://images.squarespace-cdn.com/content/v1/5df3b3298a8734580f1e0036/1582133993349-L21BGYHF93IFR0QZLC63/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/image-asset.jpeg" />
             <Background>
                 <Card.Header>
@@ -114,8 +116,8 @@ function Info() {
          </Col>
          <Col xs={12} md={4} >
           <Card bg="dark" text="white" >
-              <Card.Img style={{ height: "100%" }} variant="top"
-                src="https://www.thelocal.de/userdata/images/article/8a1a06ee18406d0e0d81fb55e448663dc6589a88757e1d80a74e86e99f6fc98a.jpg" />
+                <Card.Img style={{ height: "80% !important" }} variant="top"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxZxTvZpn-fTgqd85nMf_1cyCMG7NC9wTxvg&usqp=CAU" />
             <Background>
                 <Card.Header>
                   <Card.Link href="https://nomadandinlove.com/anmeldung-english-guide/" target="_blank">
@@ -133,9 +135,11 @@ function Info() {
             </Card>
          </Col>
          
-        </Row>
-        <br></br>
-        <h3>Learning German</h3>
+            </Row>
+          </FadeIn>
+          <br></br>
+          <FadeIn>
+        <Paragraph>Learning German</Paragraph>
         <Row >
         <Col xs={12} md={4} >
           <Card bg="dark" text="white" >
@@ -194,9 +198,11 @@ function Info() {
             </Card>
          </Col>
          
-        </Row>
-        <br></br>
-        <h3>Life Style in Germany</h3>
+            </Row>
+          </FadeIn>
+          <br></br>
+          <FadeIn>
+        <Paragraph>Life Style in Germany</Paragraph>
         <Row >        
           <Col xs={12} md={6}>
             <Media style={{ backgroundColor: "#000000", color: "#FFFFFF	" }}>
@@ -250,8 +256,9 @@ function Info() {
 
           </Col>
          
-        </Row>
-      
+            </Row>
+          </FadeIn>
+        </Container> 
          </>
 
     )
