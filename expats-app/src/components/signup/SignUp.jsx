@@ -4,7 +4,7 @@ import { FiUpload } from 'react-icons/fi';
 
 //const styled = styled.default
 //const { css } = styled
-const apiKey = "http://localhost:3005";
+const url = process.env.REACT_APP_API_HEROKU
 
 const CardWrapper = styled.div`
   overflow: hidden;
@@ -70,9 +70,9 @@ const CardInput = styled.input`
 const StyledForm = styled.form`
   &${CardInput}:invalid {
     border-color: ${props => {
-    	console.log(props.error)
-    	return props.error ? "red" : "none"
-    }};
+    console.log(props.error)
+    return props.error ? "red" : "none"
+  }};
   }
 `;
 const CardIcon = styled.span`
@@ -169,14 +169,14 @@ class SignUp extends Component {
   state = {
     photo: null,
     profile: {
-    name: '',
-    email: '',
-    password: '',
-    surname:"",   
-    username: "", 
-    error: false
-    },   
-    
+      name: '',
+      email: '',
+      password: '',
+      surname: "",
+      username: "",
+      error: false
+    },
+
   };
 
   handleChangeProfile = (e) => {
@@ -198,8 +198,8 @@ class SignUp extends Component {
     this.setState({
       error: false
     });
-   
-    const resp = await fetch(apiKey + '/user/Register', {
+
+    const resp = await fetch(url + '/user/Register', {
       method: 'POST',
       body: JSON.stringify({
         ...this.state.profile
@@ -214,7 +214,7 @@ class SignUp extends Component {
     photo.append('profile', this.state.photo);
     const id = await resp.json();
 
-    await fetch(apiKey + '/user/' + this.state.profile.username + '/upload', {
+    await fetch(url + '/user/' + this.state.profile.username + '/upload', {
       method: 'POST',
       body: photo,
       credentials: 'include',
@@ -240,89 +240,89 @@ class SignUp extends Component {
         <CardHeader>
           <CardHeading>New User</CardHeading>
         </CardHeader>
-        
+
         <CardBody>
-          <StyledForm 
-          onSubmit={this.addNewProfile}
-          error={this.state.error}          
+          <StyledForm
+            onSubmit={this.addNewProfile}
+            error={this.state.error}
           >
-          <CardFieldset>
-            <CardInput
-              autoFocus
-              id='name'
-              placeholder='Name'
-              type='text'
-              value={this.state.profile.name}
-              onChange={(e) => this.handleChangeProfile(e)}
-              required
-            />
-          </CardFieldset>
-          
-          <CardFieldset>
-            <CardInput
-             
-             id='surname'
-             placeholder='Surname'
-             type='text'
-             value={this.state.profile.surname}
-             onChange={(e) => this.handleChangeProfile(e)}
-              required
-            />
-          </CardFieldset>          
-          <CardFieldset>
-            <CardInput
-              
-              id='username'
-              placeholder='Username'
-              type='text'
-              value={this.state.profile.username}
-              onChange={(e) => this.handleChangeProfile(e)}
-              required
-            />
-          </CardFieldset>
-          <CardFieldset>
-            <CardInput
-             value={this.state.profile.email}
-             onChange={(e) => this.handleChangeProfile(e)}
-             placeholder='Email'
-             type='text'
-             id='email'
-              required
-            />
-          </CardFieldset>
-          <CardFieldset>
-            <CardInput
-               value={this.state.profile.password}
-               onChange={(e) => this.handleChangeProfile(e)}
-               placeholder='Password'
-               type='password'
-               id='password'
-               required              
-            />
-            
-            <CardIcon
-              onClick={this.revealPassword}
-              className='fa fa-eye'
-              eye
-              small
-            />
-          </CardFieldset>
-          <CardFieldset>
-            <CardInput
-              
-              type="file"
-              id='profilePhoto'
-              placeholder='Image Upload'
-              onChange={(e) => this.addPhoto(e)}
-              accept='image/*'
-          ></CardInput>            
-          </CardFieldset>
-          
-          <CardFieldset>
-            <CardButton block type='submit'>Sign Up</CardButton>
-          </CardFieldset>
-          </StyledForm> 
-          
+            <CardFieldset>
+              <CardInput
+                autoFocus
+                id='name'
+                placeholder='Name'
+                type='text'
+                value={this.state.profile.name}
+                onChange={(e) => this.handleChangeProfile(e)}
+                required
+              />
+            </CardFieldset>
+
+            <CardFieldset>
+              <CardInput
+
+                id='surname'
+                placeholder='Surname'
+                type='text'
+                value={this.state.profile.surname}
+                onChange={(e) => this.handleChangeProfile(e)}
+                required
+              />
+            </CardFieldset>
+            <CardFieldset>
+              <CardInput
+
+                id='username'
+                placeholder='Username'
+                type='text'
+                value={this.state.profile.username}
+                onChange={(e) => this.handleChangeProfile(e)}
+                required
+              />
+            </CardFieldset>
+            <CardFieldset>
+              <CardInput
+                value={this.state.profile.email}
+                onChange={(e) => this.handleChangeProfile(e)}
+                placeholder='Email'
+                type='text'
+                id='email'
+                required
+              />
+            </CardFieldset>
+            <CardFieldset>
+              <CardInput
+                value={this.state.profile.password}
+                onChange={(e) => this.handleChangeProfile(e)}
+                placeholder='Password'
+                type='password'
+                id='password'
+                required
+              />
+
+              <CardIcon
+                onClick={this.revealPassword}
+                className='fa fa-eye'
+                eye
+                small
+              />
+            </CardFieldset>
+            <CardFieldset>
+              <CardInput
+
+                type="file"
+                id='profilePhoto'
+                placeholder='Image Upload'
+                onChange={(e) => this.addPhoto(e)}
+                accept='image/*'
+              ></CardInput>
+            </CardFieldset>
+
+            <CardFieldset>
+              <CardButton block type='submit'>Sign Up</CardButton>
+            </CardFieldset>
+          </StyledForm>
+
           <CardFieldset>
             <CardLink>I already have an account</CardLink>
           </CardFieldset>
