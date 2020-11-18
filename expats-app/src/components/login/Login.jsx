@@ -5,7 +5,7 @@ import { GrFacebook, GrLinkedin } from 'react-icons/gr';
 import styled, { css } from 'styled-components'
 import { propTypes } from "react-bootstrap/esm/Image";
 import NavBar from "../navbar/NavBar";
-
+const url = process.env.REACT_APP_API_HEROKU
 
 const CardWrapper = styled.div`
   overflow: hidden;
@@ -195,13 +195,14 @@ class Login extends React.Component {
 
 
   fetchUser = async () => {
-    let resp = await fetch("http://localhost:3005/user/signIn", {
+    let resp = await fetch(url + "/user/signIn", {
       method: "POST",
       credentials: 'include',
       body: JSON.stringify(this.state.userCredentials),
-      headers: new Headers({
-        "content-Type": "application/json"
-      })
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
     })
     if (resp.ok) {
       this.state.isAuthenticated = true
@@ -262,7 +263,7 @@ class Login extends React.Component {
                 <CardOptionsItem>
                   <a
                     href={
-                      'http://localhost:3005/user/auth/fbSignIn'
+                      url + '/user/auth/fbSignIn'
                     }
                   >
                     <div className='LoginButtons'>
@@ -274,7 +275,7 @@ class Login extends React.Component {
                 <CardOptionsItem>
                   <a
                     href={
-                      'http://localhost:3005/user/auth/LinkedIn'
+                      url + '/user/auth/LinkedIn'
                     }
                   >
                     <div className='LoginButtons'>
