@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import {Container, Row, Col} from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 
 const WeatherIcon = styled.img`
   display: block;
@@ -36,31 +36,31 @@ const Text = styled.span`
   
  
 `;
-function  ForecastItem({today, city, image, todaysunrise, todaysunset, todaytemp, todaydescription})  {
-    const iconUrl = `https://openweathermap.org/img/w/${image}.png`
+function ForecastItem({ today, city, image, todaysunrise, todaysunset, todaytemp, todaydescription }) {
+  const iconUrl = `https://openweathermap.org/img/w/${image}.png`
 
   return (
-      <Container fluid>    
-               
-          <Text weight="800" align='center' color='#008000' ><h4>{city}</h4></Text>
-          <Text fontSize="10px" align='center' >{today}</Text>
-          <Row> 
-            <Col sm={4}> 
-            <Text fontSize="10px">Sunrise: {todaysunrise} AM</Text>
+    <Container fluid>
+
+      <h4 style={{ textAlign: 'center', color: '#008000', paddingTop: '5px' }} >{city}</h4>
+      <Text fontSize="10px" align='center' >{today}</Text>
+      <Row>
+        <Col sm={4}>
+          <Text fontSize="10px">Sunrise: {todaysunrise} AM</Text>
           <Text fontSize="10px">Sunset: {todaysunset} PM</Text>
-          </Col>
-          <Col sm={4}> 
+        </Col>
+        <Col sm={4}>
           <Text fontSize="16px" color='#0000FF' > {todaydescription} </Text>
-          </Col>  
-          <Col sm={4}>          
-                <WeatherIcon src={iconUrl}/>
-                <Text align="center" color='#008000'>{todaytemp}&deg;C</Text>                
-          
-          </Col> </Row>
-                 
-             
-          </Container>   
-      
+        </Col>
+        <Col sm={4}>
+          <WeatherIcon src={iconUrl} />
+          <Text align="center" color='#008000'>{todaytemp}&deg;C</Text>
+
+        </Col> </Row>
+
+
+    </Container>
+
   );
 };
 
