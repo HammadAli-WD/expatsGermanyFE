@@ -25,12 +25,14 @@ const DisplayOver = styled.div({
 const BigTitle = styled.h2({
   textTransform: "uppercase",
   fontFamily: "Helvetica",
+  color: "white"
 });
 
 const SubTitle = styled.h4({
   fontFamily: "Helvetica",
   transform: "translate3d(0,50px,0)",
   transition: "transform 350ms ease",
+  color: "#FF0000"
 });
 
 const Paragraph = styled.p`
@@ -40,7 +42,7 @@ const Paragraph = styled.p`
   transition: transform 350ms ease
   padding: ${({ padding }) => padding || '2px'};
   margin: ${({ margin }) => margin || '2px'};
-  font-size: ${({ fontSize }) => fontSize || '14px'};
+  font-size: ${({ fontSize }) => fontSize || '16px'};
   text-align: ${({ align }) => align || 'left'};
   &::first-letter {
     text-transform: capitalize;
@@ -58,7 +60,7 @@ const Background = styled.div({
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   marginLeft: '15px',
-  
+
   color: "#FFF",
   position: "relative",
   width: "400px",
@@ -74,6 +76,11 @@ const Background = styled.div({
   [`:hover ${Hover}`]: {
     opacity: 1,
   },
+  '@media(max-width: 500px)': {
+    width: "380px",
+    marginTop: '10px',
+  }
+
 });
 
 const CTA = styled.a({
@@ -83,90 +90,90 @@ const CTA = styled.a({
 });
 
 function Covid() {
-    const [cases, setCases] = useState({});
-    const [lastday, setLastday] = useState({});
-    const [caseFatailityRate, setCaseFatailityRate] = useState({});
-    const [hasError, setHasError] = useState(false);
-    const [loading, setLoading] = useState(false)
-    
-    useEffect(() => {
-        (async () => {
-            try {
-                setLoading(true)
-                await Promise.all([                    
-                    fetch("http://localhost:3005/covid/germanyCases")
-                    .then((response) => response.json())
-                    .then(setCases),
-                    fetch("http://localhost:3005/covid/lastData")
-                    .then((response) => response.json())
-                    .then(setLastday),
-                    fetch("http://localhost:3005/covid/CFR")
-                    .then((response) => response.json())
-                    .then(setCaseFatailityRate)
-                ])
-                setLoading(false)
-            } catch {
-                console.log("data fetch error")
-                setHasError(true)
-                setLoading(false)
-            }
-        })()
-    }, []);   
+  const [cases, setCases] = useState({});
+  const [lastday, setLastday] = useState({});
+  const [caseFatailityRate, setCaseFatailityRate] = useState({});
+  const [hasError, setHasError] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const url = process.env.REACT_APP_API_HEROKU
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true)
+        await Promise.all([
+          fetch(url + '/covid/germanyCases')
+            .then((response) => response.json())
+            .then(setCases),
+          fetch(url + '/covid/lastData')
+            .then((response) => response.json())
+            .then(setLastday),
+          fetch(url + '/covid/CFR')
+            .then((response) => response.json())
+            .then(setCaseFatailityRate)
+        ])
+        setLoading(false)
+      } catch {
+        console.log("data fetch error")
+        setHasError(true)
+        setLoading(false)
+      }
+    })()
+  }, []);
 
-      /* useEffect(() => {
-          let num = cases.TotalConfirmed
-        let number =  Math.floor(Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k')
-        setTbg(number);
-     }, []); */
-     
-    return (
-        <>
-        {console.log('cases', cases )}
-        {loading ? <div>Loading...</div>:
-        hasError? <div>Error</div> :
-        (
+  /* useEffect(() => {
+      let num = cases.TotalConfirmed
+    let number =  Math.floor(Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k')
+    setTbg(number);
+ }, []); */
+
+  return (
+    <>
+      {console.log('cases', cases)}
+      {loading ? <div>Loading...</div> :
+        hasError ? <div>Error</div> :
+          (
 
 
-          
-         <Background>
-          <DisplayOver>
-            <BigTitle>COVID-19 Info Desk!</BigTitle>
-            <Hover>
-              <SubTitle>{cases.Country}!</SubTitle>
-              <Paragraph color='#008000'>
-              New Cases: {cases.NewConfirmed} <br></br>
+
+            <Background>
+              <DisplayOver>
+                <BigTitle>COVID-19 Info Desk!</BigTitle>
+                <Hover>
+                  <SubTitle>{cases.Country}!</SubTitle>
+                  <Paragraph color='#FFFFFF'>
+                    New Cases: {cases.NewConfirmed} <br></br>
               NewRecovered: {cases.NewRecovered} <br></br>
               New Deaths:{cases.NewDeaths} <br></br>
-              Case Fatality Rate: {Math.floor(caseFatailityRate.caseFatalityRate * 1) / 1} % 
+              Case Fatality Rate: {Math.floor(caseFatailityRate.caseFatalityRate * 1) / 1} %
               </Paragraph>
-              
-              <CTA><a href="https://news.google.com/covid19/map?hl=de&mid=%2Fm%2F0345h&gl=DE&ceid=DE%3Ade" target="_blank">View More +</a> </CTA>
-            </Hover>
-          </DisplayOver>
-        </Background>
+
+                  <CTA><a href="https://news.google.com/covid19/map?hl=de&mid=%2Fm%2F0345h&gl=DE&ceid=DE%3Ade" target="_blank">View More +</a> </CTA>
+                </Hover>
+              </DisplayOver>
+            </Background>
 
 
-          /* <div class="card">
-  <div class="card-image"></div>
-  <div class="card-text">
-    
-    <h2>{cases.Country}</h2> <span class="date">4 days ago</span>
-    <p>New Cases: {cases.NewConfirmed}</p>
-    <p>NewRecovered: {cases.NewRecovered}</p>
-    <p>New Deaths:{cases.NewDeaths}</p>
-    <p>New Cases: Case Fatality Rate: {Math.floor(caseFatailityRate.caseFatalityRate * 1) / 1} % </p>
-    <p>New Cases: {cases.NewConfirmed}</p>
-  </div>
-  
-</div> */
-          
-            ) }
+            /* <div class="card">
+    <div class="card-image"></div>
+    <div class="card-text">
       
-         </>
-
-    )
-
+      <h2>{cases.Country}</h2> <span class="date">4 days ago</span>
+      <p>New Cases: {cases.NewConfirmed}</p>
+      <p>NewRecovered: {cases.NewRecovered}</p>
+      <p>New Deaths:{cases.NewDeaths}</p>
+      <p>New Cases: Case Fatality Rate: {Math.floor(caseFatailityRate.caseFatalityRate * 1) / 1} % </p>
+      <p>New Cases: {cases.NewConfirmed}</p>
+    </div>
     
+  </div> */
+
+          )}
+
+    </>
+
+  )
+
+
 }
 
 export default Covid
