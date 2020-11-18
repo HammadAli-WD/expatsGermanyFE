@@ -15,18 +15,23 @@ const NavBar = styled(animated.nav)`
   margin-bottom: 250px
   left: 0;
   background: #2d3436;
+  overflow: hidden;
   z-index: 1;
   font-size: 1rem;
+  
   
 `;
 
 const FlexContainer = styled.div`
   max-width: 120rem;
+  overflow: hidden;
   display: flex;
   margin: auto;
   padding: 0 2rem;;
   justify-content: space-between;
   height: 3rem;
+  overflow-y: hidden; 
+  overflow-x: hidden;
 `;
 
 const NavLinks = styled(animated.ul)`
