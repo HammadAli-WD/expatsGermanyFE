@@ -9,7 +9,7 @@ import GlobalStyles from '../styles/GlobalStyles'
 import FadeIn from './FadeIn';
 import Topheader from '../components/header/Topheader';
 import Info from '../components/generalInfo/Info';
-
+const url = process.env.REACT_APP_API_HEROKU
 class Home extends Component {
 
 
@@ -23,7 +23,7 @@ class Home extends Component {
   componentDidMount = () => {
     try {
 
-      fetch("http://localhost:3005/user/me", {
+      fetch(url + "/user/me", {
         method: "GET",
         credentials: "include",
       })
