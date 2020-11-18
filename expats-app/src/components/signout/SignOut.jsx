@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { withRouter } from "react-router-dom";
-
+const url = process.env.REACT_APP_API_HEROKU
 function SignOut(props) {
     useEffect(() => {
         (async () => {
             try {
-                let resp = await fetch("http://localhost:3005/user/signOut", {
+                let resp = await fetch(url + "/user/signOut", {
                     method: "POST",
                     credentials: 'include',
                     body: JSON.stringify(),
