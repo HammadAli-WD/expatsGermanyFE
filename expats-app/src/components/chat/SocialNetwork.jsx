@@ -91,12 +91,12 @@ const PartnerMessage = styled.div`
   border-top-left-radius: 10%;
   border-bottom-left-radius: 10%;
 `;
-
+const url = process.env.REACT_APP_API_HEROKU
 const connOpt = {
   transports: ["websocket"],
 }
 const { accesstoken } = sessionStorage;
-let socket = io("http://localhost:3005", connOpt)
+let socket = io("url", connOpt)
 
 function SocialNetwork() {
   const [username, setUsername] = React.useState(null)
@@ -112,7 +112,7 @@ function SocialNetwork() {
     (async () => {
       try {
         await Promise.all([
-          fetch("http://localhost:3005/user/me", {
+          fetch(url + "/user/me", {
             method: "GET",
             credentials: "include",
           })
@@ -123,7 +123,7 @@ function SocialNetwork() {
               setImage(data.image)
             }),
           // .then(setUser),
-          fetch("http://localhost:3005/chatRooms", {
+          fetch(url + "/chatRooms", {
             method: "GET",
             credentials: "include",
           })
