@@ -1,45 +1,46 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../../HOC/UseFetch"
 import "./styles.css";
-
+const url = process.env.REACT_APP_API_HEROKU
 function HackerNews() {
-    
-  const [response, loading, hasError] = useFetch("http://localhost:3005/news/hackerNews") 
+
+    const [response, loading, hasError] = useFetch(url + "/news/hackerNews")
 
     return (
-       <>
-       
-    {loading ? 
-    <div>Loading...</div>:
-    (hasError?<div>Error...</div>:
-    (      
-      <div id="tickr-box" >
-      <div className="tickr-title" >HackerNews</div>
-      <div id="tickr-scroll">
-          <ul>
+        <>
 
-              {
-                  response.map((newsListItem, newsListItemKey) => 
-                  
-                      <li key={newsListItemKey}><a href={newsListItem.url}>{newsListItem.title || ""}</a></li>
-                         
+            {loading ?
+                <div>Loading...</div> :
+                (hasError ? <div>Error...</div> :
+                    (
+                        <div id="tickr-box" >
+                            <div className="tickr-title" >HackerNews</div>
+                            <div id="tickr-scroll">
+                                <ul>
 
+                                    {
+                                        response.map((newsListItem, newsListItemKey) =>
 
-                  )
-              }
+                                            <li key={newsListItemKey}><a href={newsListItem.url}>{newsListItem.title || ""}</a></li>
 
 
-          </ul>
-      </div>
-  </div>
 
-        
-       
-      
-    ))}    
-     
-  
-</>
-)}
+                                        )
+                                    }
+
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+
+                    ))}
+
+
+        </>
+    )
+}
 
 export default HackerNews
