@@ -10,9 +10,8 @@ const connOpt = {
   transports: ["websocket"],
 }
 const { accesstoken } = sessionStorage;
-let socket = io("http://localhost:3005", connOpt)
-
-
+const url = process.env.REACT_APP_API_HEROKU
+let socket = io(url, connOpt)
 
 function ChatRooms(props) {
   const [rooms, setRooms] = React.useState([])
@@ -22,7 +21,7 @@ function ChatRooms(props) {
     (async () => {
       try {
         await Promise.all([
-          fetch("http://localhost:3005/chatRooms", {
+          fetch(url + "/chatRooms", {
             method: "GET",
             credentials: "include",
           })
