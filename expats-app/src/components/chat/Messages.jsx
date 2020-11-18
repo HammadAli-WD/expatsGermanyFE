@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import styled from "styled-components";
 import NavBar from "../navbar/NavBar";
 import moment from "moment";
-
+const url = process.env.REACT_APP_API_HEROKU
 const { Meta } = Card;
 const Page = styled.div`
   
@@ -15,16 +15,15 @@ const Page = styled.div`
   display: flex;
   margin-top: 50px;  
   align-items: center;  
-  flex-direction: column; 
+  flex-direction: column;
+  height: 80vh; 
 
 `;
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  
-  height: 450px;
-  max-height: 450px;
+  flex-direction: column;  
+  max-height: 400px;
   height: 80vh;
   overflow: hidden;
   width: 390px;
@@ -105,7 +104,7 @@ const connOpt = {
   transports: ["websocket"],
 }
 const { accesstoken } = sessionStorage;
-let socket = io("http://localhost:3005", connOpt)
+let socket = io(url, connOpt)
 
 function Messages({ room }) {
 
@@ -121,7 +120,7 @@ function Messages({ room }) {
 
     try {
 
-      fetch("http://localhost:3005/user/me", {
+      fetch(url + "/user/me", {
         method: "GET",
         credentials: "include",
       })
