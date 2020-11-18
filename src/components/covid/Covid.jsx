@@ -63,7 +63,7 @@ const Background = styled.div({
 
   color: "#FFF",
   position: "relative",
-  width: "400px",
+  maxWidth: "400px",
   height: "250px",
   cursor: "pointer",
   backgroundImage: "url(https://cdn.prod.www.spiegel.de/images/dd9718d7-8ed0-4cc4-89ba-bfee1322516b_w948_r1.77_fpx45_fpy24.jpg)",
@@ -77,7 +77,7 @@ const Background = styled.div({
     opacity: 1,
   },
   '@media(max-width: 500px)': {
-    width: "380px",
+    maxWidth: "315px",
     marginTop: '10px',
   }
 
@@ -88,6 +88,7 @@ const CTA = styled.a({
   bottom: "20px",
   left: "20px",
 });
+const url = process.env.REACT_APP_API_HEROKU
 
 function Covid() {
   const [cases, setCases] = useState({});
@@ -95,7 +96,6 @@ function Covid() {
   const [caseFatailityRate, setCaseFatailityRate] = useState({});
   const [hasError, setHasError] = useState(false);
   const [loading, setLoading] = useState(false)
-  const url = process.env.REACT_APP_API_HEROKU
   useEffect(() => {
     (async () => {
       try {
