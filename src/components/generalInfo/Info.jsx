@@ -207,7 +207,7 @@ function Info() {
           <Col xs={12} md={6}>
             <Media style={{ backgroundColor: "#000000", color: "#FFFFFF	" }}>
               
-                  <Image style={{ minHeight: "196px", maxWidth: "50%" }} 
+                  <Image style={{ minHeight: "180px", maxWidth: "50%" }} 
                     src="https://i.ytimg.com/vi/HmhvCNmuzGQ/mqdefault.jpg" />
                 <Background >
                 <Card.Header >
@@ -233,7 +233,7 @@ function Info() {
          </Col>
           <Col xs={12} md={6}>
             <Media style={{ backgroundColor: "#000000", color: "#FFFFFF	" }}>
-                  <Card.Img style={{ minHeight: "196px", maxWidth: "50%" }} 
+                  <Card.Img style={{ minHeight: "180px", maxWidth: "50%" }} 
                     src="https://lh3.googleusercontent.com/proxy/7g9z1Sqe4RAD33rzSJaB4QiibIPXfoWQAAL48P_U-_BavqGuXTGTLvxupCbwFHA4DlZ7w34i7dYa_s-Utg_a_GlaNPoJn_UekJ6crZKF4DbV9kslynr-j4JOjNMIX5OWFaQ6Tg" />
 
               <Background >
