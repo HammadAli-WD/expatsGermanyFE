@@ -40,7 +40,7 @@ const Paragraph = styled.h3`
   } ;
   &::first-letter {
     text-transform: capitalize;
-  } 
+  }   
 `;
 
 /* const Paragraph = styled.p({
@@ -68,7 +68,7 @@ function Info() {
       <>
         <Container>
           <FadeIn>
-        <Paragraph>Bureaucracy in Germany for Expatriates</Paragraph>
+            <Paragraph>Visa Process</Paragraph>
         <Row >
         
          <Col xs={12} md={4}>
@@ -207,8 +207,8 @@ function Info() {
           <Col xs={12} md={6}>
             <Media style={{ backgroundColor: "#000000", color: "#FFFFFF	" }}>
               
-              <Image style={{ minHeight: "170px", maxWidth: "50%" }} 
-                src="https://joinup.ec.europa.eu/sites/default/files/inline-images/0_grafik_gut_leben-600x400.png" />
+                  <Image style={{ minHeight: "210px", maxWidth: "50%" }} 
+                    src="https://i.ytimg.com/vi/HmhvCNmuzGQ/mqdefault.jpg" />
                 <Background >
                 <Card.Header >
                   <Card.Link href="https://www.fluentu.com/blog/german/german-way-of-life/"
@@ -221,10 +221,7 @@ function Info() {
                     <Card.Text >
                       <Card.Link style={{ color: "white" }}
                         href="https://www.fluentu.com/blog/german/german-way-of-life/"
-                        target="_blank">Wish you could become German?</Card.Link>
-
-                   
-                    
+                          target="_blank">Wish you could become German?<br></br>How Is the German Way of Life Different?</Card.Link>
 
                     </Card.Text>
                   
@@ -236,8 +233,8 @@ function Info() {
          </Col>
           <Col xs={12} md={6}>
             <Media style={{ backgroundColor: "#000000", color: "#FFFFFF	" }}>
-              <Card.Img style={{ minHeight: "50px", maxWidth: "50%" }} 
-                src="https://www.selectshockey.com/wp-content/uploads/2019/11/Dresden-Frauenkirche.jpg" />
+                  <Card.Img style={{ minHeight: "210px", maxWidth: "50%" }} 
+                    src="https://lh3.googleusercontent.com/proxy/7g9z1Sqe4RAD33rzSJaB4QiibIPXfoWQAAL48P_U-_BavqGuXTGTLvxupCbwFHA4DlZ7w34i7dYa_s-Utg_a_GlaNPoJn_UekJ6crZKF4DbV9kslynr-j4JOjNMIX5OWFaQ6Tg" />
 
               <Background >
                 <Card.Header ><Card.Link href="https://www.deutschland.de/en/topic/life/lifestyle-and-cuisine" target="_blank">Lifestyle and Cuisine</Card.Link></Card.Header>
@@ -246,7 +243,7 @@ function Info() {
                   <Card.Text >
                     <Card.Link style={{ color: "white" }}
                       href="https://www.deutschland.de/en/topic/life/lifestyle-and-cuisine"
-                      target="_blank">Current and background information on lifestyle and cuisine.</Card.Link>
+                      target="_blank"> <br></br>Current and background information on lifestyle and cuisine.</Card.Link>
                     
                     </Card.Text>
                   
