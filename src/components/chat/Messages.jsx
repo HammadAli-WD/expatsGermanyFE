@@ -6,7 +6,6 @@ import 'antd/dist/antd.css';
 import styled from "styled-components";
 import NavBar from "../navbar/NavBar";
 import moment from "moment";
-const url = process.env.REACT_APP_API_HEROKU
 const { Meta } = Card;
 const Page = styled.div`
   
@@ -99,12 +98,11 @@ const PartnerMessage = styled.div`
   border-top-left-radius: 10%;
   border-bottom-left-radius: 10%;
 `;
-
+const url = process.env.REACT_APP_API_HEROKU
 const connOpt = {
   transports: ["websocket"],
 }
-const { accesstoken } = sessionStorage;
-let socket = io(url, connOpt)
+let socket = io(process.env.REACT_APP_API_HEROKU, connOpt)
 
 function Messages({ room }) {
 
