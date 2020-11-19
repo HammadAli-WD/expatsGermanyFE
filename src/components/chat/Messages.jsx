@@ -16,6 +16,9 @@ const Page = styled.div`
   align-items: center;  
   flex-direction: column;
   height: 80vh; 
+  @media (max-width: 702px) {
+    width: 360px;
+  }
 
 `;
 
@@ -29,7 +32,10 @@ const Container = styled.div`
   border: 1px solid #2d3436;
   border-radius: 10px;
   padding-bottom: 10px;
-  margin-top: 25px;
+  margin-top: 25px; 
+  @media (max-width: 702px) {
+    width: 350px;
+  } 
 `;
 
 const TextArea = styled.textarea`
@@ -49,6 +55,10 @@ const TextArea = styled.textarea`
   ::placeholder {
     color: #2d3436;
   }
+  @media (max-width: 702px) {
+    width: 88%;
+    margin: 23px;
+  }
 `;
 
 const Button = styled.button`
@@ -59,6 +69,10 @@ const Button = styled.button`
   border-radius: 10px;
   color: #FFFFFF;
   font-size: 17px;
+  @media (max-width: 702px) {
+    width: 88%;
+    margin: 23px;
+  }
 `;
 
 const Form = styled.form`
@@ -99,10 +113,11 @@ const PartnerMessage = styled.div`
   border-bottom-left-radius: 10%;
 `;
 const url = process.env.REACT_APP_API_HEROKU
+
 const connOpt = {
   transports: ["websocket"],
 }
-let socket = io(process.env.REACT_APP_API_HEROKU, connOpt)
+let socket = io(url, connOpt)
 
 function Messages({ room }) {
 
