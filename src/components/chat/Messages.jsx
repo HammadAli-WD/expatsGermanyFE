@@ -27,7 +27,6 @@ const Container = styled.div`
   flex-direction: column;  
   max-height: 400px;
   height: 80vh;
-  overflow: hidden;
   width: 390px;
   border: 1px solid #2d3436;
   border-radius: 10px;
