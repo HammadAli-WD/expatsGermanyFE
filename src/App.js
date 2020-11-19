@@ -8,7 +8,6 @@ import Home from './pages/Home';
 import ChatRooms from './components/chat/ChatRooms';
 import Messages from './components/chat/Messages';
 import SignOut from './components/signout/SignOut';
-import 'react-app-polyfill/stable';
 
 
 function App(props) {
