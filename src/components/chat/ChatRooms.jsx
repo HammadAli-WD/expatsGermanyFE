@@ -1,6 +1,6 @@
 import React, { useEffect, Component } from "react"
 import io from "socket.io-client"
-import { Media } from "react-bootstrap"
+import { Image, Media } from "react-bootstrap"
 import styled, { keyframes } from "styled-components";
 import { Animated } from "react-animated-css";
 import ParticlesBg from "particles-bg";
@@ -11,21 +11,16 @@ const connOpt = {
 }
 const { accesstoken } = sessionStorage;
 const url = process.env.REACT_APP_API_HEROKU
-let socket = io(url, connOpt)
+const socket = io(url, connOpt)
 
-const CardWrapper = styled.div`
-  overflow: hidden;
-  @media (max-width: 702px) {
-   width: 300px;
+const ImageResponsive = styled.img`
+ width: 210px;
+ height: 120px;
+@media (max-width: 702px) {
+   display: none;
   }
-`;
+`
 
-const MediaImage = styled.img`
-    width: "250px";
-    @media (max-width: 702px) {
-     display: none;
-  }
-`;
 
 function ChatRooms(props) {
   const [rooms, setRooms] = React.useState([])
@@ -88,35 +83,33 @@ function ChatRooms(props) {
 
   return (
     <>
-
       <NavBar link='/logout' name='SignOut' />
       <ParticlesBg type="custom" config={config} bg={true} />
       <Animated animationIn="zoomInDown" animationOut="zoomOutDown" animationInDuration={2000} animationOutDuration={1400} isVisible={isVisible}>
-        <div style={{ overflow: 'hidden', padding: "50px 5px 15px 20px", width: '100vw', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', display: "flex", flexDirection: "column" }}>
+        <div style={{ overflow: 'hidden', padding: "50px 5px 15px 20px", width: '100vw', justifyContent: 'center', alignItems: 'center', maxHeight: '98vh', display: "flex", flexDirection: "column" }}>
           <div style={{ padding: "10px 5px 15px 20px", textShadow: "1px 1px 0px #ff0000" }}>
-            <h2 style={{ display: "flex", justifyContent: 'center', alignItems: 'center' }} >Welcome</h2>
-            <p>Select the group for social connection with fellow members</p></div>
+            <h2 style={{ display: "flex", justifyContent: 'center', alignItems: 'center' }} >Welcome</h2><nobr><p>Select the group for social connection with fellow members</p></nobr>
+          </div>
           {rooms.map((room, i) => (
-            <CardWrapper>
-              <Media as="li" style={{ padding: "10px 5px 15px 20px" }}>
-                <MediaImage src={room.image} alt="Generic placeholder" />
 
-                <Media.Body style={{ padding: "10px 5px 15px 20px" }}>
+            <Media as="li" style={{ padding: "10px 5px 15px 20px" }}>
+              <ImageResponsive style={{ width: "210px", height: "120px" }} src={room.image} alt="Generic placeholder" />
 
-                  <Link key={i} onClick={async () => {
-                    await setisVisible(false)
-                    await setTimeout(() => props.history.push(`/rooms/${room.name}`), 800);
+              <Media.Body style={{ padding: "10px 5px 15px 20px" }}>
+
+                <Link key={i} onClick={async () => {
+                  await setisVisible(false)
+                  await setTimeout(() => props.history.push(`/rooms/${room.name}`), 800);
 
 
-                  }}>
-                    <h3 style={{ padding: "0px", margin: "0px" }}>{room.name}</h3>
-                    <p style={{ padding: "0px", margin: "0px", fontStyle: "italic" }}><small>{room.description}</small></p>
+                }}>
+                  <h3 style={{ padding: "0px", margin: "0px" }}>{room.name}</h3>
+                  <p style={{ padding: "0px", margin: "0px", fontStyle: "italic" }}><small>{room.description}</small></p>
 
-                  </Link>
+                </Link>
 
-                </Media.Body>
-              </Media>
-            </CardWrapper>
+              </Media.Body>
+            </Media>
           ))}
 
         </div>
