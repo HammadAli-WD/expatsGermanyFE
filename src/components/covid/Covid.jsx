@@ -63,7 +63,7 @@ const Background = styled.div({
 
   color: "#FFF",
   position: "relative",
-  maxWidth: "410px",
+  maxWidth: "420px",
   height: "250px",
   cursor: "pointer",
   backgroundImage: "url(https://cdn.prod.www.spiegel.de/images/dd9718d7-8ed0-4cc4-89ba-bfee1322516b_w948_r1.77_fpx45_fpy24.jpg)",
