@@ -13,6 +13,18 @@ const BurgerWrapper = styled.div`
     height: 612px;
   }
 `;
+const Paragraph = styled.p`
+color: #696969;
+font-style: italic;
+font-size: 110% ;
+padding: 0px;
+margin-top: 0px;
+margin-left: 20px;
+
+@media (max-width: 702px) {
+    display: none;
+  }
+`;
 
 function Topheader() {
 
@@ -24,7 +36,7 @@ function Topheader() {
 
                 <FadeIn>
                     <h1 style={{ paddingTop: "20px", paddingLeft: "20px", marginBottom: "0" }} >Welcome abroad!</h1>
-                    <nobr><p style={{ color: '#696969', fontStyle: "italic", fontSize: '110%', padding: "0px", marginTop: "0px", marginLeft: "20px" }}>Enjoy the international experience with fellow global minds</p></nobr>
+                    <nobr><Paragraph>Enjoy the international experience with fellow global minds</Paragraph></nobr>
 
                 </FadeIn>
 
