@@ -76,8 +76,8 @@ const Background = styled.div({
   [`:hover ${Hover}`]: {
     opacity: 1,
   },
-  '@media(max-width: 500px)': {
-    maxWidth: "315px",
+  '@media(max-width: 700px)': {
+    maxWidth: "300px",
     marginTop: '10px',
   }
 
