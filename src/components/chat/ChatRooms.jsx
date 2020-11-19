@@ -1,6 +1,6 @@
 import React, { useEffect, Component } from "react"
 import io from "socket.io-client"
-import { Image, Media } from "react-bootstrap"
+import { Media } from "react-bootstrap"
 import styled, { keyframes } from "styled-components";
 import { Animated } from "react-animated-css";
 import ParticlesBg from "particles-bg";
@@ -12,6 +12,20 @@ const connOpt = {
 const { accesstoken } = sessionStorage;
 const url = process.env.REACT_APP_API_HEROKU
 let socket = io(url, connOpt)
+
+const CardWrapper = styled.div`
+  overflow: hidden;
+  @media (max-width: 702px) {
+   width: 300px;
+  }
+`;
+
+const MediaImage = styled.img`
+    width: "250px";
+    @media (max-width: 702px) {
+     display: none;
+  }
+`;
 
 function ChatRooms(props) {
   const [rooms, setRooms] = React.useState([])
@@ -74,6 +88,7 @@ function ChatRooms(props) {
 
   return (
     <>
+
       <NavBar link='/logout' name='SignOut' />
       <ParticlesBg type="custom" config={config} bg={true} />
       <Animated animationIn="zoomInDown" animationOut="zoomOutDown" animationInDuration={2000} animationOutDuration={1400} isVisible={isVisible}>
@@ -82,25 +97,26 @@ function ChatRooms(props) {
             <h2 style={{ display: "flex", justifyContent: 'center', alignItems: 'center' }} >Welcome</h2>
             <p>Select the group for social connection with fellow members</p></div>
           {rooms.map((room, i) => (
+            <CardWrapper>
+              <Media as="li" style={{ padding: "10px 5px 15px 20px" }}>
+                <MediaImage src={room.image} alt="Generic placeholder" />
 
-            <Media as="li" style={{ padding: "10px 5px 15px 20px" }}>
-              <Image style={{ width: "250px" }} src={room.image} alt="Generic placeholder" />
+                <Media.Body style={{ padding: "10px 5px 15px 20px" }}>
 
-              <Media.Body style={{ padding: "10px 5px 15px 20px" }}>
-
-                <Link key={i} onClick={async () => {
-                  await setisVisible(false)
-                  await setTimeout(() => props.history.push(`/rooms/${room.name}`), 800);
+                  <Link key={i} onClick={async () => {
+                    await setisVisible(false)
+                    await setTimeout(() => props.history.push(`/rooms/${room.name}`), 800);
 
 
-                }}>
-                  <h3 style={{ padding: "0px", margin: "0px" }}>{room.name}</h3>
-                  <p style={{ padding: "0px", margin: "0px", fontStyle: "italic" }}><small>{room.description}</small></p>
+                  }}>
+                    <h3 style={{ padding: "0px", margin: "0px" }}>{room.name}</h3>
+                    <p style={{ padding: "0px", margin: "0px", fontStyle: "italic" }}><small>{room.description}</small></p>
 
-                </Link>
+                  </Link>
 
-              </Media.Body>
-            </Media>
+                </Media.Body>
+              </Media>
+            </CardWrapper>
           ))}
 
         </div>
