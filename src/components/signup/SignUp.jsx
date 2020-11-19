@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components'
 import { FiUpload } from 'react-icons/fi';
-
+import NavBar from '../navbar/NavBar';
+import { Link, withRouter } from 'react-router-dom';
 //const styled = styled.default
 //const { css } = styled
 const url = process.env.REACT_APP_API_HEROKU
@@ -167,8 +168,9 @@ const CardLink = styled.a`
 
 class SignUp extends Component {
   state = {
-    photo: null,
+
     profile: {
+      photo: null,
       name: '',
       email: '',
       password: '',
@@ -211,216 +213,139 @@ class SignUp extends Component {
       },
     });
     const photo = new FormData();
-    photo.append('profile', this.state.photo);
+    photo.append('profile', this.state.profile.photo);
     const id = await resp.json();
 
-    await fetch(url + '/user/' + this.state.profile.username + '/upload', {
+    /* await fetch(url + '/user/' + this.state.profile.username + '/upload', {
       method: 'POST',
       body: photo,
       credentials: 'include',
       headers: {
         'Access-Control-Allow-Origin': '*',
       },
-    });
+    }); */
 
-    this.props.history.push("/")
+    this.props.history.push("/login")
   };
 
+  bufferToBase64(buf) {
+    var binstr = Array.prototype.map
+      .call(buf, function (ch) {
+        return String.fromCharCode(ch);
+      })
+      .join("");
+    return btoa(binstr);
+  }
   addPhoto = (e) => {
-    const photo = e.target.files[0];
-
+    const buf = e.target.files[0];
+    const photo = this.bufferToBase64(buf);
     this.setState({
       photo,
     });
   };
 
+
+
   render() {
     return (
-      <CardWrapper>
-        <CardHeader>
-          <CardHeading>New User</CardHeading>
-        </CardHeader>
+      <>
+        <NavBar link="/login" name='Sign In' />
+        <CardWrapper>
+          <CardHeader>
+            <CardHeading>New User</CardHeading>
+          </CardHeader>
 
-        <CardBody>
-          <StyledForm
-            onSubmit={this.addNewProfile}
-            error={this.state.error}
-          >
+          <CardBody>
+            <StyledForm
+              onSubmit={this.addNewProfile}
+              error={this.state.error}
+            >
+              <CardFieldset>
+                <CardInput
+                  autoFocus
+                  id='name'
+                  placeholder='Name'
+                  type='text'
+                  value={this.state.profile.name}
+                  onChange={(e) => this.handleChangeProfile(e)}
+                  required
+                />
+              </CardFieldset>
+
+              <CardFieldset>
+                <CardInput
+
+                  id='surname'
+                  placeholder='Surname'
+                  type='text'
+                  value={this.state.profile.surname}
+                  onChange={(e) => this.handleChangeProfile(e)}
+                  required
+                />
+              </CardFieldset>
+              <CardFieldset>
+                <CardInput
+
+                  id='username'
+                  placeholder='Username'
+                  type='text'
+                  value={this.state.profile.username}
+                  onChange={(e) => this.handleChangeProfile(e)}
+                  required
+                />
+              </CardFieldset>
+              <CardFieldset>
+                <CardInput
+                  value={this.state.profile.email}
+                  onChange={(e) => this.handleChangeProfile(e)}
+                  placeholder='Email'
+                  type='text'
+                  id='email'
+                  required
+                />
+              </CardFieldset>
+              <CardFieldset>
+                <CardInput
+                  value={this.state.profile.password}
+                  onChange={(e) => this.handleChangeProfile(e)}
+                  placeholder='Password'
+                  type='password'
+                  id='password'
+                  required
+                />
+
+                <CardIcon
+                  onClick={this.revealPassword}
+                  className='fa fa-eye'
+                  eye
+                  small
+                />
+              </CardFieldset>
+              <CardFieldset>
+                <CardInput
+
+                  type="file"
+                  id='profilePhoto'
+                  placeholder='Image Upload'
+                  onChange={(e) => this.addPhoto(e)}
+                  accept='image/*'
+                ></CardInput>
+              </CardFieldset>
+
+              <CardFieldset>
+                <CardButton block type='submit'>Sign Up</CardButton>
+              </CardFieldset>
+            </StyledForm>
+
             <CardFieldset>
-              <CardInput
-                autoFocus
-                id='name'
-                placeholder='Name'
-                type='text'
-                value={this.state.profile.name}
-                onChange={(e) => this.handleChangeProfile(e)}
-                required
-              />
+              <CardLink><Link to="/login">I already have an account</Link></CardLink>
             </CardFieldset>
-
-            <CardFieldset>
-              <CardInput
-
-                id='surname'
-                placeholder='Surname'
-                type='text'
-                value={this.state.profile.surname}
-                onChange={(e) => this.handleChangeProfile(e)}
-                required
-              />
-            </CardFieldset>
-            <CardFieldset>
-              <CardInput
-
-                id='username'
-                placeholder='Username'
-                type='text'
-                value={this.state.profile.username}
-                onChange={(e) => this.handleChangeProfile(e)}
-                required
-              />
-            </CardFieldset>
-            <CardFieldset>
-              <CardInput
-                value={this.state.profile.email}
-                onChange={(e) => this.handleChangeProfile(e)}
-                placeholder='Email'
-                type='text'
-                id='email'
-                required
-              />
-            </CardFieldset>
-            <CardFieldset>
-              <CardInput
-                value={this.state.profile.password}
-                onChange={(e) => this.handleChangeProfile(e)}
-                placeholder='Password'
-                type='password'
-                id='password'
-                required
-              />
-
-              <CardIcon
-                onClick={this.revealPassword}
-                className='fa fa-eye'
-                eye
-                small
-              />
-            </CardFieldset>
-            <CardFieldset>
-              <CardInput
-
-                type="file"
-                id='profilePhoto'
-                placeholder='Image Upload'
-                onChange={(e) => this.addPhoto(e)}
-                accept='image/*'
-              ></CardInput>
-            </CardFieldset>
-
-            <CardFieldset>
-              <CardButton block type='submit'>Sign Up</CardButton>
-            </CardFieldset>
-          </StyledForm>
-
-          <CardFieldset>
-            <CardLink>I already have an account</CardLink>
-          </CardFieldset>
-        </CardBody>
-      </CardWrapper>
+          </CardBody>
+        </CardWrapper>
+      </>
 
 
 
-      /* <Container id='logingPage' className='d-flex justify-content-center '>
-        <div style={{ marginTop: '35vh' }}>
-                <Container className='d-flex justify-content-center'>
-                  <Row>
-                    <Col className='d-flex align-items-center mr-5'>
-                      <label htmlFor='profilePhoto'>
-                        <FiUpload
-                          style={{ fontSize: '55px', color: '#0073B1' }}
-                        />
-                      </label>
-                    </Col>
-                    <form onSubmit={this.addNewProfile}>
-                      <input
-                        style={{ display: 'none' }}
-                         placeholder='Username'
-                        type='file'
-                        id='profilePhoto'
-                        profile='file'
-                        onChange={(e) => this.addPhoto(e)}
-                        accept='image/*'
-                      />
-                      <Container>
-                        <Image
-                          src='Something'
-                          className='mb-3'
-                          style={{ width: '150px' }}
-                        />
-                        <Row>
-                          <Col>
-                            <FormGroup>
-                              <label>Name</label>
-                              <FormControl
-                                autoFocus
-                                id='name'
-                                type='text'
-                                value={this.state.profile.name}
-                                onChange={(e) => this.handleChangeProfile(e)}
-                              />
-                            </FormGroup>
-                            <FormGroup>
-                              <label>Surname</label>
-                              <FormControl
-                                autoFocus
-                                id='surname'
-                                type='text'
-                                value={this.state.profile.surname}
-                                onChange={(e) => this.handleChangeProfile(e)}
-                              />
-                            </FormGroup>
-                            <FormGroup>
-                              <label>username</label>
-                              <FormControl
-                                autoFocus
-                                id='username'
-                                type='text'
-                                value={this.state.profile.username}
-                                onChange={(e) => this.handleChangeProfile(e)}
-                              />
-                            </FormGroup>
-                            <FormGroup>
-                              <label>Email</label>
-                              <FormControl
-                                value={this.state.profile.email}
-                                onChange={(e) => this.handleChangeProfile(e)}
-                                type='text'
-                                id='email'
-                              />
-                            </FormGroup>
-                            <FormGroup>
-                              <label>Password</label>
-                              <FormControl
-                                value={this.state.profile.password}
-                                onChange={(e) => this.handleChangeProfile(e)}
-                                type='password'
-                                id='password'
-                              />
-                            </FormGroup>
-                          </Col>                         
-                        </Row>
-                        <Button block type='submit'>
-                          Add Info
-                        </Button>
-                      </Container>
-                    </form>
-                  </Row>
-                </Container>
-              </div>
-          
-        
-      </Container> */
     );
   }
 }
