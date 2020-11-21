@@ -25,7 +25,8 @@ const DisplayOver = styled.div({
 const BigTitle = styled.h2({
   textTransform: "uppercase",
   fontFamily: "Helvetica",
-  color: "white"
+  color: "white",
+  marginBottom: "2 px"
 });
 
 const SubTitle = styled.h4({
@@ -68,7 +69,7 @@ const Background = styled.div({
   cursor: "pointer",
   backgroundImage: "url(https://cdn.prod.www.spiegel.de/images/dd9718d7-8ed0-4cc4-89ba-bfee1322516b_w948_r1.77_fpx45_fpy24.jpg)",
   [`:hover ${DisplayOver}`]: {
-    backgroundColor: "#3E4551",
+    backgroundColor: "#343a40",
   },
   [`:hover ${SubTitle}, :hover ${Paragraph}`]: {
     transform: "translate3d(0,0,0)",

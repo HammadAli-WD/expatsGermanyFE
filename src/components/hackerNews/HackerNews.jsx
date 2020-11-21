@@ -21,7 +21,7 @@ function HackerNews() {
                                     {
                                         response.map((newsListItem, newsListItemKey) =>
 
-                                            <li key={newsListItemKey}><a style={{ color: "white !important" }} href={newsListItem.url} target="_blank">{newsListItem.title || ""}</a></li>
+                                            <li key={newsListItemKey}><a href={newsListItem.url} target="_blank">{newsListItem.title || ""}</a></li>
 
 
 

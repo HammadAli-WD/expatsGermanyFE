@@ -18,7 +18,7 @@ flex-shrink: 0;
   padding: 10px;
   margin: 0 5px;
   border-radius: 5px;
-  background-color: #000000;
+  background-color: #343a40;
   &:first-child {
     margin-left: 0;
   }
@@ -61,16 +61,16 @@ const Forecast = styled.div`
   padding-bottom: 20px;
   
 `;
-function  ForecastItem({icon, day, temp})  {
+function ForecastItem({ icon, day, temp }) {
   const iconUrl = `https://openweathermap.org/img/w/${icon}.png`
   return (
-    
-            <Wrapper>     
-          <Text align="center">{day}</Text> 
-          <WeatherIcon src={iconUrl}/>        
-          <Text align="center" weight="400">{temp}&deg;C</Text>      
-          </Wrapper>
-      
+
+    <Wrapper>
+      <Text align="center">{day}</Text>
+      <WeatherIcon src={iconUrl} />
+      <Text align="center" weight="400">{temp}&deg;C</Text>
+    </Wrapper>
+
   );
 };
 

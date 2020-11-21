@@ -15,7 +15,7 @@ flex-shrink: 0;
   padding: 0px;
   margin: 0px;
   border-radius: 6px;
-  background-color: #3E4551;
+  background-color: #343a40;
   &:first-child {
     margin-left: 0;
   }
