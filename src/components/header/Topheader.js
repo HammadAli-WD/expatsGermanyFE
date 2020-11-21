@@ -8,9 +8,9 @@ const BurgerWrapper = styled.div`
   background-image: url(https://www.studying-in-germany.org/wp-content/uploads/2014/02/germany-international-students.jpg) ;
   background-size: 100% 100%;
   margin-top: 40px;
-   height: 400px;
+   height: 300px;
   @media (min-width: 702px) {
-    height: 612px;
+    height: 700px;
   }
 `;
 const Paragraph = styled.p`
