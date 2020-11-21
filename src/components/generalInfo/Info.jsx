@@ -234,7 +234,7 @@ function Info() {
           <Col xs={12} md={6}>
             <Media style={{ backgroundColor: "#000000", color: "#FFFFFF	" }}>
                   <Card.Img style={{ minHeight: "180px", maxWidth: "50%" }} 
-                    src="https://lh3.googleusercontent.com/proxy/7g9z1Sqe4RAD33rzSJaB4QiibIPXfoWQAAL48P_U-_BavqGuXTGTLvxupCbwFHA4DlZ7w34i7dYa_s-Utg_a_GlaNPoJn_UekJ6crZKF4DbV9kslynr-j4JOjNMIX5OWFaQ6Tg" />
+                    src="https://images.squarespace-cdn.com/content/v1/5c8d093e94d71aaab660a218/1586566734620-EJEQ4NIB10QOPAJNDG1T/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/4+Insanely+Useful+Tips+To+Learning+German+%28That+Will+Change+Your+Life%29.jpeg?format=1500w" />
 
               <Background >
                 <Card.Header ><Card.Link href="https://www.deutschland.de/en/topic/life/lifestyle-and-cuisine" target="_blank">Lifestyle and Cuisine</Card.Link></Card.Header>
