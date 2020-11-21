@@ -36,7 +36,7 @@ const SubTitle = styled.h4({
 });
 
 const Paragraph = styled.p`
-  color: ${({ color }) => color || '#000000'};
+  color: ${({ color }) => color || '#3E4551'};
   display: block;
   transform: translate3d(0,50px,0);
   transition: transform 350ms ease
@@ -68,7 +68,7 @@ const Background = styled.div({
   cursor: "pointer",
   backgroundImage: "url(https://cdn.prod.www.spiegel.de/images/dd9718d7-8ed0-4cc4-89ba-bfee1322516b_w948_r1.77_fpx45_fpy24.jpg)",
   [`:hover ${DisplayOver}`]: {
-    backgroundColor: "rgba(0,0,0,.5)",
+    backgroundColor: "#3E4551",
   },
   [`:hover ${SubTitle}, :hover ${Paragraph}`]: {
     transform: "translate3d(0,0,0)",

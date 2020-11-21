@@ -205,7 +205,7 @@ function Info() {
         <Paragraph>Life Style in Germany</Paragraph>
         <Row >        
           <Col xs={12} md={6}>
-            <Media style={{ backgroundColor: "#383838", color: "#FFFFFF	" }}>
+            <Media style={{ backgroundColor: "#3E4551", color: "#FFFFFF	" }}>
               
                   <Image style={{ minHeight: "180px", maxWidth: "50%" }} 
                     src="https://i.ytimg.com/vi/HmhvCNmuzGQ/mqdefault.jpg" />
@@ -232,7 +232,7 @@ function Info() {
          
          </Col>
           <Col xs={12} md={6}>
-            <Media style={{ backgroundColor: "#383838", color: "#FFFFFF	" }}>
+            <Media style={{ backgroundColor: "#3E4551", color: "#FFFFFF	" }}>
                   <Image style={{ minHeight: "180px", maxWidth: "50%" }}
                     src="https://images.squarespace-cdn.com/content/v1/5c8d093e94d71aaab660a218/1586566734620-EJEQ4NIB10QOPAJNDG1T/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/4+Insanely+Useful+Tips+To+Learning+German+%28That+Will+Change+Your+Life%29.jpeg?format=1500w" />
 
