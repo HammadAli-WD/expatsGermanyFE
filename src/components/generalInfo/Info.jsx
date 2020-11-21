@@ -31,9 +31,9 @@ const SubTitle = styled.h4({
 });
 
 const Paragraph = styled.h3`
-  color: ${({ color }) => color || '#000000'};
+  color: ${({ color }) => color || '#3E4551'};
    &: hover{
-  color: ${({ color }) => color || '#FF0000'};
+  color: ${({ color }) => color || '#000000"'};
   text-decoration: underline;
    transform: "translate(12px, 12px)";
   transition: transform .2s ease-out;
@@ -72,7 +72,7 @@ function Info() {
         <Row >
         
          <Col xs={12} md={4}>
-          <Card bg="dark" text="white" >
+          <Card style={{backgroundColor: "#3E4551 !important"}} text="white" >
               <Card.Img style={{ height: "80% !important" }} variant="top"
                 src="https://germany-simplified.com/wp-content/uploads/2020/10/Germany_Simplified_Blog_2WorkVisa.png" />
            <Background>
@@ -94,7 +94,7 @@ function Info() {
             </Card>
          </Col>
          <Col xs={12} md={4}>
-            <Card bg="dark" text="white" >
+            <Card style={{backgroundColor: "#3E4551 !important"}} text="white" >
                 <Card.Img style={{ height: "80% !important" }} variant="top"
                 src="https://images.squarespace-cdn.com/content/v1/5df3b3298a8734580f1e0036/1582133993349-L21BGYHF93IFR0QZLC63/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/image-asset.jpeg" />
             <Background>
@@ -115,7 +115,7 @@ function Info() {
             </Card>
          </Col>
          <Col xs={12} md={4} >
-          <Card bg="dark" text="white" >
+          <Card style={{backgroundColor: "#3E4551 !important"}} text="white" >
                 <Card.Img style={{ height: "80% !important" }} variant="top"
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxZxTvZpn-fTgqd85nMf_1cyCMG7NC9wTxvg&usqp=CAU" />
             <Background>
@@ -142,7 +142,7 @@ function Info() {
         <Paragraph>Learning German</Paragraph>
         <Row >
         <Col xs={12} md={4} >
-          <Card bg="dark" text="white" >
+          <Card style={{backgroundColor: "#3E4551 !important"}} text="white" >
           <Card.Img style={{height:"100%"}} variant="top" src="https://static.dw.com/image/15703236_301.jpg" />
             <Background>
             <Card.Header><Card.Link href="https://www.dw.com/de/deutsch-lernen/radio-d-teil-1/s-9604" target="_blank">A1 | Radio D</Card.Link></Card.Header>
@@ -160,7 +160,7 @@ function Info() {
             </Card>
          </Col>
         <Col xs={12} md={4} >
-          <Card bg="dark" text="white" >
+          <Card style={{backgroundColor: "#3E4551 !important"}} text="white" >
           <Card.Img style={{height:"100%"}} variant="top" src="https://static.dw.com/image/16366399_301.jpg" />
             <Background>
             <Card.Header><Card.Link href="https://www.dw.com/de/deutsch-lernen/harry/s-13219" target="_blank">A1, A2, B1 | Harry</Card.Link></Card.Header>
@@ -179,7 +179,7 @@ function Info() {
             </Card>
          </Col>         
          <Col xs={12} md={4} >
-          <Card bg="dark" text="white" >
+          <Card style={{backgroundColor: "#3E4551 !important"}} text="white" >
           <Card.Img style={{height:"100%"}} variant="top" src="https://static.dw.com/image/37307244_302.jpg" />
             <Background>
             <Card.Header><Card.Link href="https://www.dw.com/de/deutsch-lernen/deutsch-mobil/s-40884569" target="_blank">Deutsch mobil</Card.Link></Card.Header>

@@ -35,7 +35,7 @@ function Topheader() {
       <BurgerWrapper>
 
         <FadeIn>
-          <h1 style={{ paddingTop: "20px", paddingLeft: "20px", marginBottom: "0" }} >Welcome abroad!</h1>
+          <h1 style={{ paddingTop: "20px", paddingLeft: "20px", marginBottom: "0", color: "#3E4551" }} >Welcome abroad!</h1>
           <nobr><Paragraph>Enjoy the international experience with fellow global minds</Paragraph></nobr>
 
         </FadeIn>

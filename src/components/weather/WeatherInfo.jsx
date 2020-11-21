@@ -69,7 +69,7 @@ function WeatherInfo() {
         </Spinner> :
         (hasError ? <div>Error...</div> :
           (
-            <Carousel style={{ backgroundColor: '#000000' }}>
+            <Carousel style={{ backgroundColor: '#3E4551' }}>
               {response.map(({ lat, daily, lon, current }, i) =>
                 <Carousel.Item>
                   <DailyItems
