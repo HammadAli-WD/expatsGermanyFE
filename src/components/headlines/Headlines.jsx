@@ -41,7 +41,7 @@ function Headlines() {
           (
 
             <ul className="list-unstyled">
-              <h2>Bing News Headlines</h2>
+              <h2 style={{ color: "#343a40" }}>Bing News Headlines</h2>
               {response.map((tn, i) =>
                 <Media as="li">
                   <img
