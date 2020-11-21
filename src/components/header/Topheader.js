@@ -8,7 +8,7 @@ const BurgerWrapper = styled.div`
   background-image: url(https://www.studying-in-germany.org/wp-content/uploads/2014/02/germany-international-students.jpg) ;
   background-size: 100% 100%;
   margin-top: 40px;
-   height: 300px;
+   height: 400px;
   @media (min-width: 702px) {
     height: 612px;
   }
@@ -28,22 +28,22 @@ margin-left: 20px;
 
 function Topheader() {
 
-    return (
-        <>
+  return (
+    <>
 
-            {/*  https://cdn.prod.www.manager-magazin.de/images/ebc32f7e-0001-0004-0000-000001184842_w718_r1.77_fpx50_fpy55.56.jpg */}
-            <BurgerWrapper>
+      {/*  https://cdn.prod.www.manager-magazin.de/images/ebc32f7e-0001-0004-0000-000001184842_w718_r1.77_fpx50_fpy55.56.jpg */}
+      <BurgerWrapper>
 
-                <FadeIn>
-                    <h1 style={{ paddingTop: "20px", paddingLeft: "20px", marginBottom: "0" }} >Welcome abroad!</h1>
-                    <nobr><Paragraph>Enjoy the international experience with fellow global minds</Paragraph></nobr>
+        <FadeIn>
+          <h1 style={{ paddingTop: "20px", paddingLeft: "20px", marginBottom: "0" }} >Welcome abroad!</h1>
+          <nobr><Paragraph>Enjoy the international experience with fellow global minds</Paragraph></nobr>
 
-                </FadeIn>
+        </FadeIn>
 
-            </BurgerWrapper>
+      </BurgerWrapper>
 
-        </>
-    )
+    </>
+  )
 }
 
 export default Topheader
