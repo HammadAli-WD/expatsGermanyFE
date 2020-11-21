@@ -72,7 +72,7 @@ function Info() {
         <Row >
         
          <Col xs={12} md={4}>
-          <Card style={{backgroundColor: "#3E4551 !important"}} text="white" >
+                <Card style={{ background: "#3E4551 !important"}} text="white" >
               <Card.Img style={{ height: "80% !important" }} variant="top"
                 src="https://germany-simplified.com/wp-content/uploads/2020/10/Germany_Simplified_Blog_2WorkVisa.png" />
            <Background>

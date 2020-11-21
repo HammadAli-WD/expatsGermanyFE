@@ -15,7 +15,7 @@ flex-shrink: 0;
   padding: 0px;
   margin: 0px;
   border-radius: 6px;
-  background-color: #000000;
+  background-color: #3E4551;
   &:first-child {
     margin-left: 0;
   }
@@ -42,7 +42,7 @@ function ForecastItem({ today, city, image, todaysunrise, todaysunset, todaytemp
   return (
     <Container fluid>
 
-      <h4 style={{ textAlign: 'center', color: '#008000', paddingTop: '5px' }} >{city}</h4>
+      <h4 style={{ textAlign: 'center', color: '#FFF', paddingTop: '5px' }} >{city}</h4>
       <Text fontSize="10px" align='center' >{today}</Text>
       <Row>
         <Col sm={4}>
@@ -54,7 +54,7 @@ function ForecastItem({ today, city, image, todaysunrise, todaysunset, todaytemp
         </Col>
         <Col sm={4}>
           <WeatherIcon src={iconUrl} />
-          <Text align="center" color='#008000'>{todaytemp}&deg;C</Text>
+          <Text align="center" color='#FFF'>{todaytemp}&deg;C</Text>
 
         </Col> </Row>
 
