@@ -10,7 +10,7 @@ const BurgerWrapper = styled.div`
   margin-top: 40px;
    height: 300px;
   @media (min-width: 702px) {
-    height: 700px;
+    height: 687px;
   }
 `;
 const Paragraph = styled.p`
