@@ -95,7 +95,7 @@ function Info() {
          </Col>
          <Col xs={12} md={4}>
             <Card bg="dark" text="white" >
-                <Card.Img style={{ height: "80% !important" }} variant="top"
+                <Card.Img style={{ height: "150% !important" }} variant="top"
                 src="https://immigrantinvest.com/media/2019/06/citizenship-or-permanent-residence-or-residence-permit-399383553.jpg" />
             <Background>
                 <Card.Header>
