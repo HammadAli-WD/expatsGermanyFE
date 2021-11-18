@@ -95,8 +95,8 @@ function Info() {
          </Col>
          <Col xs={12} md={4}>
             <Card bg="dark" text="white" >
-                <Card.Img style={{ height: "150% !important" }} variant="top"
-                src="https://immigrantinvest.com/media/2019/06/citizenship-or-permanent-residence-or-residence-permit-399383553.jpg" />
+                <Card.Img style={{ height: "80% !important" }} variant="top"
+                src="https://image.shutterstock.com/image-vector/united-kingdom-national-permit-residence-260nw-1797214387.jpg" />
             <Background>
                 <Card.Header>
                   <Card.Link href="https://service.berlin.de/dienstleistung/325475/en/" target="_blank">
