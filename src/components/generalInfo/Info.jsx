@@ -96,7 +96,7 @@ function Info() {
          <Col xs={12} md={4}>
             <Card bg="dark" text="white" >
                 <Card.Img style={{ height: "80% !important" }} variant="top"
-                src="https://tuebingenresearchcampus.com/assets/Uploads/Seitenvorschaubilder/_resampled/ResizedImageWzYwMCwyMTld/Passports.png" />
+                src="https://immigrantinvest.com/media/2019/06/citizenship-or-permanent-residence-or-residence-permit-399383553.jpg" />
             <Background>
                 <Card.Header>
                   <Card.Link href="https://service.berlin.de/dienstleistung/325475/en/" target="_blank">
