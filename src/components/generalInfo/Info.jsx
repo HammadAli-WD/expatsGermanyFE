@@ -96,7 +96,7 @@ function Info() {
          <Col xs={12} md={4}>
             <Card bg="dark" text="white" >
                 <Card.Img style={{ height: "80% !important" }} variant="top"
-                src="https://germany-simplified.com/wp-content/uploads/2020/10/Germany_Simplified_Blog_2WorkVisa.png" />
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxZxTvZpn-fTgqd85nMf_1cyCMG7NC9wTxvg&usqp=CAU" />
             <Background>
                 <Card.Header>
                   <Card.Link href="https://service.berlin.de/dienstleistung/325475/en/" target="_blank">
